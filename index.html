@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wellness & Treatments</title>
+    <style>
+        /* Basic CSS Reset & Styling */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background-color: #fcfbfa; }
+        
+        /* Navigation & Header */
+        header { background: #ffffff; padding: 20px; text-align: center; border-bottom: 1px solid #eaeaea; position: sticky; top: 0; }
+        nav a { margin: 0 15px; text-decoration: none; color: #555; font-weight: 600; }
+        nav a:hover { color: #8a7a6e; }
+
+        /* Container layouts */
+        .container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
+        section { margin-bottom: 60px; scroll-margin-top: 80px; }
+        h2 { color: #4a3e3d; margin-bottom: 20px; border-bottom: 2px solid #eaeaea; padding-bottom: 5px; }
+
+        /* Treatment Menu Styling */
+        .menu-item { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 15px; }
+        .menu-title { font-weight: bold; color: #4a3e3d; }
+        .menu-price { font-weight: bold; color: #8a7a6e; white-space: nowrap; }
+        .menu-dots { flex-grow: 1; border-bottom: 1px dotted #ccc; margin: 0 10px; }
+        .menu-desc { font-size: 0.9em; color: #666; margin-top: -5px; margin-bottom: 20px; }
+
+        /* Booking Section placeholder */
+        .booking-widget { background: #fff; border: 1px solid #eaeaea; border-radius: 8px; padding: 40px; text-align: center; min-height: 400px; }
+        
+        /* Footer */
+        footer { text-align: center; padding: 20px; font-size: 0.85em; color: #888; background: #fff; border-top: 1px solid #eaeaea; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Your Business Name</h1>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#menu">Treatments</a>
+            <a href="#book">Book Now</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        
+        <!-- ABOUT SECTION -->
+        <section id="about">
+            <h2>About Me</h2>
+            <p>Welcome! I am a dedicated practitioner focused on providing relaxing and restorative treatments tailored to your individual needs. With over [X] years of experience, my goal is to help you feel your absolute best.</p>
+        </section>
+
+        <!-- TREATMENT MENU SECTION -->
+        <section id="menu">
+            <h2>Treatment Menu</h2>
+            
+            <!-- Item 1 -->
+            <div class="menu-item">
+                <span class="menu-title">Deep Tissue Massage</span>
+                <span class="menu-dots"></span>
+                <span class="menu-price">£60.00</span>
+            </div>
+            <p class="menu-desc">A 60-minute targeted treatment designed to relieve deep muscle tension and chronic aches.</p>
+
+            <!-- Item 2 -->
+            <div class="menu-item">
+                <span class="menu-title">Aromatherapy Facial</span>
+                <span class="menu-dots"></span>
+                <span class="menu-price">£45.00</span>
+            </div>
+            <p class="menu-desc">A 45-minute hydrating facial using organic essential oils to restore skin radiance.</p>
+        </section>
+
+        <!-- BOOKING SECTION -->
+        <section id="book">
+            <h2>Schedule an Appointment</h2>
+            <div class="booking-widget">
+                <!-- BACK-END EMBED GOES HERE -->
+                <p style="color: #999; margin-top: 150px;">[Your Booking Calendar Will Load Right Here]</p>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Your Business Name. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
