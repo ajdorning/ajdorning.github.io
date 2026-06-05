@@ -5,38 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wellness & Treatments</title>
     <style>
-        /* Basic CSS Reset & Styling */
+        /* BRAND PALETTE FROM LOGO: 
+           Background: #EFEAE6 (Soft Cream)
+           Primary Text / Headers: #161A16 (Deep Forest/Black)
+           Accents / Prices: #A35C58 (Warm Clove Pink/Red) 
+        */
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background-color: #fcfbfa; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6; 
+            color: #2c302c; 
+            background-color: #efeae6; /* Matched to your logo background */
+        }
         
         /* Navigation & Header */
-        header { background: #ffffff; padding: 20px; text-align: center; border-bottom: 1px solid #eaeaea; position: sticky; top: 0; }
-        nav a { margin: 0 15px; text-decoration: none; color: #555; font-weight: 600; }
-        nav a:hover { color: #8a7a6e; }
+        header { 
+            background: #ffffff; 
+            padding: 15px 20px; 
+            text-align: center; 
+            border-bottom: 1px solid #dcd5cf; 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+        }
+        
+        /* Brand Logo Style */
+        .brand-logo {
+            display: block;
+            max-width: 150px;
+            height: auto;
+            margin: 10px auto 15px auto;
+        }
+
+        nav a { margin: 0 15px; text-decoration: none; color: #4a504a; font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; }
+        nav a:hover { color: #a35c58; }
 
         /* Container layouts */
         .container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
-        section { margin-bottom: 60px; scroll-margin-top: 80px; }
-        h2 { color: #4a3e3d; margin-bottom: 20px; border-bottom: 2px solid #eaeaea; padding-bottom: 5px; }
+        section { margin-bottom: 60px; scroll-margin-top: 180px; }
+        h2 { color: #161a16; margin-bottom: 25px; border-bottom: 2px solid #dcd5cf; padding-bottom: 5px; font-weight: 400; letter-spacing: 1px; }
 
-        /* Treatment Menu Styling */
-        .menu-item { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 15px; }
-        .menu-title { font-weight: bold; color: #4a3e3d; }
-        .menu-price { font-weight: bold; color: #8a7a6e; white-space: nowrap; }
-        .menu-dots { flex-grow: 1; border-bottom: 1px dotted #ccc; margin: 0 10px; }
-        .menu-desc { font-size: 0.9em; color: #666; margin-top: -5px; margin-bottom: 20px; }
+        /* About Section Layout with Image */
+        .about-content { display: flex; gap: 30px; align-items: center; flex-wrap: wrap; }
+        .about-text { flex: 1; min-width: 280px; }
+        .about-img { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+
+        /* Treatment Menu Styling with Grid & Images */
+        .menu-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
+        .menu-card { background: #fff; border: 1px solid #e5ded8; border-radius: 12px; overflow: hidden; display: flex; flex-wrap: wrap; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+        .menu-img { width: 200px; height: 100%; min-height: 150px; object-fit: cover; flex: 1; min-width: 150px; }
+        .menu-info { padding: 25px; flex: 2; min-width: 280px; }
+        
+        .menu-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+        .menu-title { font-weight: bold; color: #161a16; font-size: 1.2rem; }
+        .menu-price { font-weight: bold; color: #a35c58; font-size: 1.2rem; } /* Earthy Red accent */
+        .menu-desc { font-size: 0.95em; color: #606660; }
 
         /* Booking Section placeholder */
-        .booking-widget { background: #fff; border: 1px solid #eaeaea; border-radius: 8px; padding: 40px; text-align: center; min-height: 400px; }
+        .booking-widget { background: #fff; border: 1px solid #e5ded8; border-radius: 12px; padding: 40px; text-align: center; min-height: 400px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
         
         /* Footer */
-        footer { text-align: center; padding: 20px; font-size: 0.85em; color: #888; background: #fff; border-top: 1px solid #eaeaea; }
+        footer { text-align: center; padding: 30px; font-size: 0.85em; color: #888; background: #fff; border-top: 1px solid #e5ded8; margin-top: 100px; }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Your Business Name</h1>
+        <!-- YOUR BRAND LOGO -->
+        <img class="brand-logo" src="logo.png" alt="Business Logo">
         <nav>
             <a href="#about">About</a>
             <a href="#menu">Treatments</a>
@@ -49,35 +86,53 @@
         <!-- ABOUT SECTION -->
         <section id="about">
             <h2>About Me</h2>
-            <p>Welcome! I am a dedicated practitioner focused on providing relaxing and restorative treatments tailored to your individual needs. With over [X] years of experience, my goal is to help you feel your absolute best.</p>
+            <div class="about-content">
+                <img class="about-img" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80" alt="Practitioner Profile">
+                <div class="about-text">
+                    <p>Welcome! I am a dedicated practitioner focused on providing relaxing and restorative treatments tailored to your individual needs.</p>
+                    <br>
+                    <p>[Type your personalized bio text here! Describe your business approach and care philosophy.]</p>
+                </div>
+            </div>
         </section>
 
         <!-- TREATMENT MENU SECTION -->
         <section id="menu">
             <h2>Treatment Menu</h2>
+            <div class="menu-grid">
             
-            <!-- Item 1 -->
-            <div class="menu-item">
-                <span class="menu-title">Deep Tissue Massage</span>
-                <span class="menu-dots"></span>
-                <span class="menu-price">£60.00</span>
-            </div>
-            <p class="menu-desc">A 60-minute targeted treatment designed to relieve deep muscle tension and chronic aches.</p>
+                <!-- Treatment Item 1 -->
+                <div class="menu-card">
+                    <img class="menu-img" src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=400&q=80" alt="Massage Treatment">
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <span class="menu-title">[Treatment Name One]</span>
+                            <span class="menu-price">£60.00</span>
+                        </div>
+                        <p class="menu-desc">Type a short, beautiful description of what this treatment includes and how long it lasts (e.g., 60 Mins). Tell the client how it will make them feel.</p>
+                    </div>
+                </div>
 
-            <!-- Item 2 -->
-            <div class="menu-item">
-                <span class="menu-title">Aromatherapy Facial</span>
-                <span class="menu-dots"></span>
-                <span class="menu-price">£45.00</span>
+                <!-- Treatment Item 2 -->
+                <div class="menu-card">
+                    <img class="menu-img" src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=400&q=80" alt="Facial Treatment">
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <span class="menu-title">[Treatment Name Two]</span>
+                            <span class="menu-price">£45.00</span>
+                        </div>
+                        <p class="menu-desc">Type a short description for your second service here. Highlight the key benefits or unique organic products you use.</p>
+                    </div>
+                </div>
+
             </div>
-            <p class="menu-desc">A 45-minute hydrating facial using organic essential oils to restore skin radiance.</p>
         </section>
 
         <!-- BOOKING SECTION -->
         <section id="book">
             <h2>Schedule an Appointment</h2>
             <div class="booking-widget">
-                <!-- BACK-END EMBED GOES HERE -->
+                <!-- BACK-END EMBED WILL GO HERE LATER -->
                 <p style="color: #999; margin-top: 150px;">[Your Booking Calendar Will Load Right Here]</p>
             </div>
         </section>
