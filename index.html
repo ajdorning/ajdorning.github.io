@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cedar & Clove Wellness</title>
     
-    <!-- Elegant font imported to match your branding -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
@@ -26,23 +25,13 @@
             padding: 40px 20px 30px 20px;
         }
 
-        /* NEW: The round masking window container */
-        .logo-window {
-            display: block;
-            width: 220px;         /* Sets the exact size of your logo circle */
-            height: 220px;
-            margin: 0 auto 20px auto;
-            border-radius: 50%;   /* Makes the window a perfect circle */
-            overflow: hidden;     /* Actively slices off anything outside the circle! */
-            position: relative;
-        }
-
-        /* NEW: The actual image zoomed inside the window */
+        /* Cleaned up logo style: No masking window, no scaling, no clipping */
         .brand-logo {
+            display: block;
+            max-width: 250px; /* Perfectly sized to show your full detailed graphic */
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform: scale(1.16); /* Zooms past the outer cream edge straight to your white border */
+            height: auto;
+            margin: 0 auto 15px auto;
         }
 
         /* Business Title */
@@ -112,15 +101,11 @@
 </head>
 <body>
 
-    <!-- CREAM BRANDING BLOCK WITH THE NEW CIRCLE MASK WINDOW -->
     <div class="brand-header-block">
-        <div class="logo-window">
-            <img class="brand-logo" src="logo.png?v=4" alt="Cedar & Clove Wellness Logo">
-        </div>
+        <img class="brand-logo" src="logo.png?v=5" alt="Cedar & Clove Wellness Logo">
         <h1 class="business-title">Cedar & Clove Wellness</h1>
     </div>
 
-    <!-- WHITE STICKY NAVIGATION BAR BELOW -->
     <nav>
         <a href="#about">About</a>
         <a href="#menu">Treatments</a>
@@ -129,7 +114,6 @@
 
     <div class="container">
         
-        <!-- ABOUT SECTION -->
         <section id="about">
             <h2>About Me</h2>
             <div class="about-content">
@@ -143,12 +127,10 @@
             </div>
         </section>
 
-        <!-- TREATMENT MENU SECTION -->
         <section id="menu">
             <h2>Treatment Menu</h2>
             <div class="menu-grid">
             
-                <!-- Treatment Item 1 -->
                 <div class="menu-card">
                     <img class="menu-img" src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=400&q=80" alt="Massage Treatment">
                     <div class="menu-info">
@@ -160,7 +142,6 @@
                     </div>
                 </div>
 
-                <!-- Treatment Item 2 -->
                 <div class="menu-card">
                     <img class="menu-img" src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=400&q=80" alt="Facial Treatment">
                     <div class="menu-info">
@@ -175,11 +156,9 @@
             </div>
         </section>
 
-        <!-- BOOKING SECTION -->
         <section id="book">
             <h2>Schedule an Appointment</h2>
             <div class="booking-widget">
-                <!-- BACK-END EMBED WILL GO HERE LATER -->
                 <p style="color: #999; margin-top: 150px;">[Your Booking Calendar Will Load Right Here]</p>
             </div>
         </section>
