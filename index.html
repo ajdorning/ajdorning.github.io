@@ -3,59 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cedar and Clove Wellness</title>
+    <title>Cedar & Clove Wellness</title>
     
-    <!-- Elegant, upscale font imported to match image_a5b5e7.png -->
+    <!-- Elegant font imported to match your branding -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
-        /* BRAND PALETTE FROM LOGO: 
-           Background/Cream: #EFEAE6
-           Deep Text: #161A16
-           Warm Clove Accent: #A35C58 
-        */
-
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { 
-            font-family: 'Montserrat', sans-serif; /* Clean font for readability */
+            font-family: 'Montserrat', sans-serif; 
             line-height: 1.6; 
             color: #2c302c; 
-            background-color: #efeae6; /* Main page cream background */
+            background-color: #efeae6; 
         }
         
-        /* BLOCK 1: BRAND HEADER (Cream block matching the logo image) */
+        /* BLOCK 1: BRAND HEADER (Cream block) */
         .brand-header-block {
             background-color: #efeae6;
             text-align: center;
             padding: 40px 20px 30px 20px;
         }
 
- /* Enlarged brand logo icon configuration */
-.brand-logo {
-    display: block;
-    max-width: 240px; /* Restored your preferred larger size */
-    width: 100%;
-    height: auto;
-    margin: 0 auto 20px auto;
-    
-    /* THE REAL CROP BOUNDARY */
-    clip-path: circle(39% at center); /* This acts like a sharp cookie cutter, ignoring the outer edges */
-    transform: scale(1.25);            /* This zooms the graphic up so the white ring hits the new crop line */
-}
-        
-        /* Business Title styled directly to mirror image_a5b5e7.png */
+        /* NEW: The round masking window container */
+        .logo-window {
+            display: block;
+            width: 220px;         /* Sets the exact size of your logo circle */
+            height: 220px;
+            margin: 0 auto 20px auto;
+            border-radius: 50%;   /* Makes the window a perfect circle */
+            overflow: hidden;     /* Actively slices off anything outside the circle! */
+            position: relative;
+        }
+
+        /* NEW: The actual image zoomed inside the window */
+        .brand-logo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.16); /* Zooms past the outer cream edge straight to your white border */
+        }
+
+        /* Business Title */
         .business-title {
             font-family: 'Cormorant Garamond', serif;
             font-size: 2.8rem;
             font-weight: 400;
-            color: #4a1c19; /* Deep, luxury earthy clove-maroon tone from reference image */
+            color: #4a1c19; 
             letter-spacing: 0.5px;
             margin-bottom: 5px;
         }
 
-        /* BLOCK 2: NAV BAR (Solid white rectangle sitting underneath the cream brand block) */
+        /* BLOCK 2: NAV BAR (Solid white rectangle) */
         nav { 
             background: #ffffff; 
             padding: 18px 20px; 
@@ -91,12 +91,10 @@
             letter-spacing: 1px; 
         }
 
-        /* About Section Layout with Image */
         .about-content { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
         .about-text { flex: 1; min-width: 280px; font-size: 0.95rem; color: #444; }
         .about-img { width: 220px; height: 220px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.04); }
 
-        /* Treatment Menu Styling with Grid & Images */
         .menu-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
         .menu-card { background: #fff; border: 1px solid #e5ded8; border-radius: 12px; overflow: hidden; display: flex; flex-wrap: wrap; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
         .menu-img { width: 200px; height: 100%; min-height: 160px; object-fit: cover; flex: 1; min-width: 150px; }
@@ -107,18 +105,18 @@
         .menu-price { font-weight: bold; color: #a35c58; font-size: 1.1rem; }
         .menu-desc { font-size: 0.9rem; color: #606660; }
 
-        /* Booking Section placeholder */
         .booking-widget { background: #fff; border: 1px solid #e5ded8; border-radius: 12px; padding: 40px; text-align: center; min-height: 400px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
         
-        /* Footer */
         footer { text-align: center; padding: 40px; font-size: 0.85em; color: #888; background: #fff; border-top: 1px solid #e5ded8; margin-top: 120px; }
     </style>
 </head>
 <body>
 
-    <!-- CREAM BRANDING BLOCK AT TOP -->
+    <!-- CREAM BRANDING BLOCK WITH THE NEW CIRCLE MASK WINDOW -->
     <div class="brand-header-block">
-        <img class="brand-logo" src="logo.png" alt="Cedar and Clove Wellness Logo">
+        <div class="logo-window">
+            <img class="brand-logo" src="logo.png?v=4" alt="Cedar & Clove Wellness Logo">
+        </div>
         <h1 class="business-title">Cedar & Clove Wellness</h1>
     </div>
 
@@ -189,7 +187,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 Cedar and Clove Wellness. All rights reserved.</p>
+        <p>&copy; 2026 Cedar & Clove Wellness. All rights reserved.</p>
     </footer>
 
 </body>
