@@ -32,16 +32,19 @@
             padding: 40px 20px 30px 20px;
         }
 
-   /* Enlarged brand logo icon configuration */
+  /* Enlarged brand logo icon configuration */
 .brand-logo {
     display: block;
-    max-width: 240px; /* Kept nice and large so it doesn't get lost */
+    max-width: 210px; /* Adjusted slightly down to account for the zoom */
     width: 100%;
     height: auto;
     margin: 0 auto 20px auto;
-    border-radius: 50%; /* Trims the square corners into a clean circle */
+    
+    /* THE COOKIE CUTTER TRICK */
+    border-radius: 50%;       /* Cuts the image into a perfect circle */
+    transform: scale(0.86);   /* Zooms IN slightly to crop out the outer cream border */
+    object-fit: cover;        /* Ensures the botanical graphic stays crisp and un-squished */
 }
-
         /* Business Title styled directly to mirror image_a5b5e7.png */
         .business-title {
             font-family: 'Cormorant Garamond', serif;
