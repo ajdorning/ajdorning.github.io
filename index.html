@@ -15,26 +15,24 @@
             font-family: 'Montserrat', sans-serif; 
             line-height: 1.6; 
             color: #2c302c; 
-            background-color: #efeae6; 
+            background-color: #efeae6; /* The code provides this beautiful cream background! */
         }
         
-        /* BLOCK 1: BRAND HEADER (Cream block) */
+        /* HEADER BLOCK (Cream background - your transparent PNG logo will float beautifully here) */
         .brand-header-block {
             background-color: #efeae6;
             text-align: center;
             padding: 40px 20px 30px 20px;
         }
 
-        /* Cleaned up logo style: No masking window, no scaling, no clipping */
         .brand-logo {
             display: block;
-            max-width: 250px; /* Perfectly sized to show your full detailed graphic */
+            max-width: 250px; /* Kept nice and prominent */
             width: 100%;
             height: auto;
             margin: 0 auto 15px auto;
         }
 
-        /* Business Title */
         .business-title {
             font-family: 'Cormorant Garamond', serif;
             font-size: 2.8rem;
@@ -44,7 +42,7 @@
             margin-bottom: 5px;
         }
 
-        /* BLOCK 2: NAV BAR (Solid white rectangle) */
+        /* NAVIGATION BAR (Solid white rectangle) */
         nav { 
             background: #ffffff; 
             padding: 18px 20px; 
@@ -56,7 +54,7 @@
             z-index: 100; 
         }
         nav a { 
-            margin: 0 20px; 
+            margin: 0 15px; 
             text-decoration: none; 
             color: #4a504a; 
             font-weight: 600; 
@@ -66,27 +64,37 @@
         }
         nav a:hover { color: #a35c58; }
 
-        /* Container layouts */
+        /* Page Layout Containers */
         .container { max-width: 800px; margin: 50px auto; padding: 0 20px; }
-        section { margin-bottom: 70px; scroll-margin-top: 100px; }
+        section { margin-bottom: 70px; scroll-margin-top: 120px; }
+        
         h2 { 
             font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: #161a16; 
-            margin-bottom: 25px; 
-            border-bottom: 1px solid #dcd5cf; 
-            padding-bottom: 8px; 
+            margin-bottom: 10px;
             font-weight: 400; 
             letter-spacing: 1px; 
         }
+        
+        .section-subtitle {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #a35c58;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
 
+        /* About Section */
         .about-content { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
         .about-text { flex: 1; min-width: 280px; font-size: 0.95rem; color: #444; }
         .about-img { width: 220px; height: 220px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.04); }
 
-        .menu-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
+        /* Menu Grid Arrangements */
+        .menu-grid { display: grid; grid-template-columns: 1fr; gap: 25px; margin-bottom: 50px; }
         .menu-card { background: #fff; border: 1px solid #e5ded8; border-radius: 12px; overflow: hidden; display: flex; flex-wrap: wrap; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
-        .menu-img { width: 200px; height: 100%; min-height: 160px; object-fit: cover; flex: 1; min-width: 150px; }
+        .menu-img { width: 180px; height: 100%; min-height: 150px; object-fit: cover; flex: 1; min-width: 150px; }
         .menu-info { padding: 25px; flex: 2; min-width: 280px; }
         
         .menu-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
@@ -94,6 +102,7 @@
         .menu-price { font-weight: bold; color: #a35c58; font-size: 1.1rem; }
         .menu-desc { font-size: 0.9rem; color: #606660; }
 
+        /* Booking block placeholder */
         .booking-widget { background: #fff; border: 1px solid #e5ded8; border-radius: 12px; padding: 40px; text-align: center; min-height: 400px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
         
         footer { text-align: center; padding: 40px; font-size: 0.85em; color: #888; background: #fff; border-top: 1px solid #e5ded8; margin-top: 120px; }
@@ -102,7 +111,7 @@
 <body>
 
     <div class="brand-header-block">
-        <img class="brand-logo" src="logo.png?v=100" alt="Cedar & Clove Wellness Logo">
+        <img class="brand-logo" src="logo.png?v=200" alt="Cedar & Clove Wellness Logo">
         <h1 class="business-title">Cedar & Clove Wellness</h1>
     </div>
 
@@ -116,26 +125,29 @@
         
         <section id="about">
             <h2>About Me</h2>
+            <div class="section-subtitle">The Philosophy</div>
             <div class="about-content">
                 <img class="about-img" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80" alt="Practitioner Profile">
                 <div class="about-text">
                     <p style="font-weight: 600; color: #161a16; margin-bottom: 10px;">Welcome to absolute restoration.</p>
                     <p>Welcome! I am a dedicated practitioner focused on providing relaxing and restorative treatments tailored to your individual needs.</p>
                     <br>
-                    <p>[Type your personalized bio text here! Describe your business approach and care philosophy.]</p>
+                    <p>[Type your personalized bio text here! Describe your business approach, space, or care philosophy here.]</p>
                 </div>
             </div>
         </section>
 
         <section id="menu">
-            <h2>Treatment Menu</h2>
-            <div class="menu-grid">
             
+            <h2>In-Clinic & At-Home Services</h2>
+            <div class="section-subtitle">Bespoke Personal Care</div>
+            
+            <div class="menu-grid">
                 <div class="menu-card">
                     <img class="menu-img" src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=400&q=80" alt="Massage Treatment">
                     <div class="menu-info">
                         <div class="menu-header">
-                            <span class="menu-title">[Treatment Name One]</span>
+                            <span class="menu-title">[In-Clinic Signature Treatment]</span>
                             <span class="menu-price">£60.00</span>
                         </div>
                         <p class="menu-desc">Type a short, beautiful description of what this treatment includes and how long it lasts (e.g., 60 Mins). Tell the client how it will make them feel.</p>
@@ -143,21 +155,39 @@
                 </div>
 
                 <div class="menu-card">
-                    <img class="menu-img" src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=400&q=80" alt="Facial Treatment">
+                    <img class="menu-img" src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=400&q=80" alt="At Home Treatment">
                     <div class="menu-info">
                         <div class="menu-header">
-                            <span class="menu-title">[Treatment Name Two]</span>
-                            <span class="menu-price">£45.00</span>
+                            <span class="menu-title">[At-Home / Mobile Service]</span>
+                            <span class="menu-price">£75.00</span>
                         </div>
-                        <p class="menu-desc">Type a short description for your second service here. Highlight the key benefits or unique organic products you use.</p>
+                        <p class="menu-desc">Describe your luxurious mobile services here. Let your clients know how you bring the full spa experience directly to the comfort of their home.</p>
                     </div>
                 </div>
-
             </div>
+
+
+            <h2>Corporate Wellness</h2>
+            <div class="section-subtitle">Workplace Revitalisation</div>
+            
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <img class="menu-img" src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=400&q=80" alt="Corporate Event">
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <span class="menu-title">[Corporate Team Package]</span>
+                            <span class="menu-price">Contact Us</span>
+                        </div>
+                        <p class="menu-desc">Offer on-site corporate wellness treatments, desk-side therapy, or half-day corporate relaxation packages tailored to improve staff well-being.</p>
+                    </div>
+                </div>
+            </div>
+
         </section>
 
         <section id="book">
             <h2>Schedule an Appointment</h2>
+            <div class="section-subtitle">Secure Your Space</div>
             <div class="booking-widget">
                 <p style="color: #999; margin-top: 150px;">[Your Booking Calendar Will Load Right Here]</p>
             </div>
