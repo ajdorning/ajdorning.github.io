@@ -3,84 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wellness & Treatments</title>
+    <title>Cedar and Clove Wellness</title>
+    
+    <!-- Elegant, upscale font imported to match image_a5b5e7.png -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
     <style>
         /* BRAND PALETTE FROM LOGO: 
-           Background: #EFEAE6 (Soft Cream)
-           Primary Text / Headers: #161A16 (Deep Forest/Black)
-           Accents / Prices: #A35C58 (Warm Clove Pink/Red) 
+           Background/Cream: #EFEAE6
+           Deep Text: #161A16
+           Warm Clove Accent: #A35C58 
         */
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            font-family: 'Montserrat', sans-serif; /* Clean font for readability */
             line-height: 1.6; 
             color: #2c302c; 
-            background-color: #efeae6; /* Matched to your logo background */
+            background-color: #efeae6; /* Main page cream background */
         }
         
-        /* Navigation & Header */
-        header { 
+        /* BLOCK 1: BRAND HEADER (Cream block matching the logo image) */
+        .brand-header-block {
+            background-color: #efeae6;
+            text-align: center;
+            padding: 40px 20px 30px 20px;
+        }
+
+        /* Enlarged brand logo icon configuration */
+        .brand-logo {
+            display: block;
+            max-width: 240px; /* Made bigger so it doesn't get lost */
+            width: 100%;
+            height: auto;
+            margin: 0 auto 20px auto;
+        }
+
+        /* Business Title styled directly to mirror image_a5b5e7.png */
+        .business-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem;
+            font-weight: 400;
+            color: #4a1c19; /* Deep, luxury earthy clove-maroon tone from reference image */
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        /* BLOCK 2: NAV BAR (Solid white rectangle sitting underneath the cream brand block) */
+        nav { 
             background: #ffffff; 
-            padding: 15px 20px; 
+            padding: 18px 20px; 
             text-align: center; 
+            border-top: 1px solid #dcd5cf;
             border-bottom: 1px solid #dcd5cf; 
             position: sticky; 
             top: 0; 
             z-index: 100; 
         }
-        
-       /* Brand Logo Style */
-.brand-logo {
-    display: block;
-    max-width: 150px;
-    height: auto;
-    margin: 10px auto 15px auto;
-    border-radius: 50%; /* This cuts out the square corners! */
+        nav a { 
+            margin: 0 20px; 
+            text-decoration: none; 
+            color: #4a504a; 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            font-size: 0.8rem; 
+            letter-spacing: 1.5px; 
         }
-
-        nav a { margin: 0 15px; text-decoration: none; color: #4a504a; font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; }
         nav a:hover { color: #a35c58; }
 
         /* Container layouts */
-        .container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
-        section { margin-bottom: 60px; scroll-margin-top: 180px; }
-        h2 { color: #161a16; margin-bottom: 25px; border-bottom: 2px solid #dcd5cf; padding-bottom: 5px; font-weight: 400; letter-spacing: 1px; }
+        .container { max-width: 800px; margin: 50px auto; padding: 0 20px; }
+        section { margin-bottom: 70px; scroll-margin-top: 100px; }
+        h2 { 
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: #161a16; 
+            margin-bottom: 25px; 
+            border-bottom: 1px solid #dcd5cf; 
+            padding-bottom: 8px; 
+            font-weight: 400; 
+            letter-spacing: 1px; 
+        }
 
         /* About Section Layout with Image */
-        .about-content { display: flex; gap: 30px; align-items: center; flex-wrap: wrap; }
-        .about-text { flex: 1; min-width: 280px; }
-        .about-img { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .about-content { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+        .about-text { flex: 1; min-width: 280px; font-size: 0.95rem; color: #444; }
+        .about-img { width: 220px; height: 220px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.04); }
 
         /* Treatment Menu Styling with Grid & Images */
         .menu-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
         .menu-card { background: #fff; border: 1px solid #e5ded8; border-radius: 12px; overflow: hidden; display: flex; flex-wrap: wrap; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
-        .menu-img { width: 200px; height: 100%; min-height: 150px; object-fit: cover; flex: 1; min-width: 150px; }
+        .menu-img { width: 200px; height: 100%; min-height: 160px; object-fit: cover; flex: 1; min-width: 150px; }
         .menu-info { padding: 25px; flex: 2; min-width: 280px; }
         
         .menu-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
-        .menu-title { font-weight: bold; color: #161a16; font-size: 1.2rem; }
-        .menu-price { font-weight: bold; color: #a35c58; font-size: 1.2rem; } /* Earthy Red accent */
-        .menu-desc { font-size: 0.95em; color: #606660; }
+        .menu-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: bold; color: #161a16; }
+        .menu-price { font-weight: bold; color: #a35c58; font-size: 1.1rem; }
+        .menu-desc { font-size: 0.9rem; color: #606660; }
 
         /* Booking Section placeholder */
         .booking-widget { background: #fff; border: 1px solid #e5ded8; border-radius: 12px; padding: 40px; text-align: center; min-height: 400px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
         
         /* Footer */
-        footer { text-align: center; padding: 30px; font-size: 0.85em; color: #888; background: #fff; border-top: 1px solid #e5ded8; margin-top: 100px; }
+        footer { text-align: center; padding: 40px; font-size: 0.85em; color: #888; background: #fff; border-top: 1px solid #e5ded8; margin-top: 120px; }
     </style>
 </head>
 <body>
 
-    <header>
-        <!-- YOUR BRAND LOGO -->
-        <img class="brand-logo" src="logo.png" alt="Business Logo">
-        <nav>
-            <a href="#about">About</a>
-            <a href="#menu">Treatments</a>
-            <a href="#book">Book Now</a>
-        </nav>
-    </header>
+    <!-- CREAM BRANDING BLOCK AT TOP -->
+    <div class="brand-header-block">
+        <img class="brand-logo" src="logo.png" alt="Cedar and Clove Wellness Logo">
+        <h1 class="business-title">Cedar and Clove Wellness</h1>
+    </div>
+
+    <!-- WHITE STICKY NAVIGATION BAR BELOW -->
+    <nav>
+        <a href="#about">About</a>
+        <a href="#menu">Treatments</a>
+        <a href="#book">Book Now</a>
+    </nav>
 
     <div class="container">
         
@@ -90,6 +133,7 @@
             <div class="about-content">
                 <img class="about-img" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80" alt="Practitioner Profile">
                 <div class="about-text">
+                    <p style="font-weight: 600; color: #161a16; margin-bottom: 10px;">Welcome to absolute restoration.</p>
                     <p>Welcome! I am a dedicated practitioner focused on providing relaxing and restorative treatments tailored to your individual needs.</p>
                     <br>
                     <p>[Type your personalized bio text here! Describe your business approach and care philosophy.]</p>
@@ -141,7 +185,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 Your Business Name. All rights reserved.</p>
+        <p>&copy; 2026 Cedar and Clove Wellness. All rights reserved.</p>
     </footer>
 
 </body>
