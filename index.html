@@ -54,7 +54,7 @@
             z-index: 100; 
         }
         nav a { 
-            margin: 0 15px; 
+            margin: 0 12px; 
             text-decoration: none; 
             color: #4a504a; 
             font-weight: 600; 
@@ -113,8 +113,9 @@
         .menu-upgrade { font-size: 0.85rem; color: #a35c58; font-style: italic; margin-top: 10px; font-weight: 600; }
         .menu-bullets { margin-top: 10px; padding-left: 20px; font-size: 0.85rem; color: #606660; }
 
-        /* Booking block placeholder */
-        .booking-widget { background: #fff; border: 1px solid #e5ded8; border-radius: 12px; padding: 40px; text-align: center; min-height: 400px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+        /* Placeholder block styles */
+        .placeholder-widget { background: #fff; border: 1px solid #e5ded8; border-radius: 12px; padding: 40px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.02); color: #606660; }
+        .booking-widget { min-height: 400px; display: flex; align-items: center; justify-content: center; }
         
         footer { text-align: center; padding: 40px; font-size: 0.85em; color: #888; background: #fff; border-top: 1px solid #e5ded8; margin-top: 120px; }
     </style>
@@ -129,7 +130,47 @@
     <nav>
         <a href="#about">About</a>
         <a href="#menu">Treatments</a>
-    </footer>
+        <a href="#corporate">Corporate</a>
+        <a href="#weddings">Weddings</a>
+        <a href="#locations">Locations</a>
+        <a href="#book">Book Now</a>
+    </nav>
 
-</body>
-</html>
+    <div class="container">
+        
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="section-subtitle">The Philosophy</div>
+            <div class="about-content">
+                <img class="about-img" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80" alt="Practitioner Profile">
+                <div class="about-text">
+                    <p style="font-weight: 600; color: #161a16; margin-bottom: 10px;">Welcome to absolute restoration.</p>
+                    <p>Welcome! I am a dedicated practitioner focused on providing relaxing and restorative treatments tailored to your individual needs.</p>
+                    <br>
+                    <p>[Type your personalised bio text here! Describe your business approach, space, or care philosophy here.]</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="menu">
+            <h2>Holistic Massage Therapies</h2>
+            <div class="section-subtitle">Restorative Bodywork</div>
+            <span class="timing-note">All timings relate to the time receiving massage treatment and do not include the consultation time.</span>
+            
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <img class="menu-img" src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=400&q=80" alt="Swedish Massage">
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <span class="menu-title">Swedish Massage</span>
+                            <span class="menu-price">50 mins | £60</span>
+                        </div>
+                        <p class="menu-desc">A classic full-body treatment designed to ease muscle tension, improve circulation, and promote deep relaxation. Using long, fluid strokes and kneading movements, this therapeutic massage is tailored to your preferred pressure to melt away daily stress and leave you feeling completely rejuvenated.</p>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <img class="menu-img" src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=400&q=80" alt="Stretch & Recover Massage">
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <span class="menu-title>
