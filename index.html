@@ -91,14 +91,47 @@
             font-style: italic;
             font-size: 0.9rem;
             color: #606660;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             display: block;
         }
 
-        /* About Section */
-        .about-content { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
-        .about-text { flex: 1; min-width: 280px; font-size: 0.95rem; color: #444; }
-        .about-img { width: 220px; height: 220px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.04); }
+        /* TREATMENT SUB-TABS INTERFACE */
+        .tab-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #dcd5cf;
+            padding-bottom: 15px;
+        }
+        .tab-btn {
+            background: #ffffff;
+            border: 1px solid #e5ded8;
+            color: #4a504a;
+            padding: 10px 16px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .tab-btn:hover {
+            border-color: #a35c58;
+            color: #a35c58;
+        }
+        .tab-btn.active {
+            background: #a35c58;
+            border-color: #a35c58;
+            color: #ffffff;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
 
         /* Menu Grid Arrangements */
         .menu-grid { display: grid; grid-template-columns: 1fr; gap: 25px; margin-bottom: 50px; }
@@ -111,7 +144,6 @@
         .menu-price { font-weight: bold; color: #a35c58; font-size: 1.1rem; white-space: nowrap; }
         .menu-desc { font-size: 0.9rem; color: #606660; }
         .menu-upgrade { font-size: 0.85rem; color: #a35c58; font-style: italic; margin-top: 10px; font-weight: 600; }
-        .menu-bullets { margin-top: 10px; padding-left: 20px; font-size: 0.85rem; color: #606660; }
 
         /* Placeholder block styles */
         .placeholder-widget { background: #fff; border: 1px solid #e5ded8; border-radius: 12px; padding: 40px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.02); color: #606660; }
@@ -139,38 +171,341 @@
     <div class="container">
         
         <section id="about">
-            <h2>About Me</h2>
-            <div class="section-subtitle">The Philosophy</div>
-            <div class="about-content">
-                <img class="about-img" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80" alt="Practitioner Profile">
-                <div class="about-text">
-                    <p style="font-weight: 600; color: #161a16; margin-bottom: 10px;">Welcome to absolute restoration.</p>
-                    <p>Welcome! I am a dedicated practitioner focused on providing relaxing and restorative treatments tailored to your individual needs.</p>
-                    <br>
-                    <p>[Type your personalised bio text here! Describe your business approach, space, or care philosophy here.]</p>
-                </div>
+            <h2>About Us</h2>
+            <div class="section-subtitle">Our Philosophy</div>
+            <div class="placeholder-widget">
+                <p style="font-weight: 600; color: #161a16; margin-bottom: 10px;">Welcome to absolute restoration.</p>
+                <p>Cedar & Clove Wellness is dedicated to providing beautifully custom, deeply restorative clinical and relaxation therapies designed to ground your nervous system and rebalance your body.</p>
             </div>
         </section>
 
         <section id="menu">
-            <h2>Holistic Massage Therapies</h2>
-            <div class="section-subtitle">Restorative Bodywork</div>
-            <span class="timing-note">All timings relate to the time receiving massage treatment and do not include the consultation time.</span>
+            <h2>Treatment Menu</h2>
+            <div class="section-subtitle">Bespoke Wellness Solutions</div>
+            <span class="timing-note">All timings relate to the time receiving massage treatment and do not include the consultation time. [cite: 1]</span>
             
-            <div class="menu-grid">
-                <div class="menu-card">
-                    <img class="menu-img" src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=400&q=80" alt="Swedish Massage">
-                    <div class="menu-info">
-                        <div class="menu-header">
-                            <span class="menu-title">Swedish Massage</span>
-                            <span class="menu-price">50 mins | £60</span>
+            <div class="tab-container">
+                <button class="tab-btn active" onclick="openTab(event, 'holistic')">Holistic</button>
+                <button class="tab-btn" onclick="openTab(event, 'luxury')">Luxury</button>
+                <button class="tab-btn" onclick="openTab(event, 'seated')">Seated</button>
+                <button class="tab-btn" onclick="openTab(event, 'facials')">Facials</button>
+                <button class="tab-btn" onclick="openTab(event, 'focused')">Focused</button>
+                <button class="tab-btn" onclick="openTab(event, 'foot')">Foot</button>
+            </div>
+
+            <div id="holistic" class="tab-content active">
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <img class="menu-img" src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=400&q=80" alt="Swedish Massage">
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-title">Swedish Massage [cite: 2]</span>
+                                <span class="menu-price">50 mins | £60 [cite: 2]</span>
+                            </div>
+                            <p class="menu-desc">A classic full-body treatment designed to ease muscle tension, improve circulation, and promote deep relaxation. [cite: 3] Using long, fluid strokes and kneading movements, this therapeutic massage is tailored to your preferred pressure to melt away daily stress and leave you feeling completely rejuvenated. [cite: 4]</p>
                         </div>
-                        <p class="menu-desc">A classic full-body treatment designed to ease muscle tension, improve circulation, and promote deep relaxation. Using long, fluid strokes and kneading movements, this therapeutic massage is tailored to your preferred pressure to melt away daily stress and leave you feeling completely rejuvenated.</p>
+                    </div>
+
+                    <div class="menu-card">
+                        <img class="menu-img" src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=400&q=80" alt="Stretch & Recover Massage">
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-title">Stretch & Recover Massage [cite: 5]</span>
+                                <span class="menu-price">70 mins | £80 [cite: 5]</span>
+                            </div>
+                            <p class="menu-desc">A recovery-focused, luxury treatment crafted for those needing advanced muscle relief. [cite: 6] This session expertly balances deep, targeted therapeutic bodywork with gentle, passive stretching. [cite: 7] Ideal for athletes, active individuals, or anyone experiencing chronic tightness and restricted mobility. [cite: 8]</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <img class="menu-img" src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=400&q=80" alt="Relax & Drain Massage">
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-title">Relax & Drain Massage [cite: 9]</span>
+                                <span class="menu-price">50 mins | £65 [cite: 9]</span>
+                            </div>
+                            <p class="menu-desc">A beautifully gentle, rhythmic treatment focusing on the lymphatic system. [cite: 10] Using light, soothing movements, this massage encourages the natural drainage of lymph fluids to help detoxify the body, reduce fluid retention, and leave you feeling lighter and deeply calmed. [cite: 11]</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <img class="menu-img" src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=400&q=80" alt="Hot Stone Experience">
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-title">Hot Stone Experience [cite: 12]</span>
+                                <span class="menu-price">50 mins | £70 [cite: 12]</span>
+                            </div>
+                            <p class="menu-desc">Smooth, heated basalt stones are used as an extension of the therapist’s hands to deliver deep, penetrating warmth to tight muscles. [cite: 13] This deeply grounding treatment melts away stubborn tension and calms the nervous system. [cite: 14]</p>
+                            <p class="menu-upgrade">+ Upgrade: Add a 15-minute Stone Facial using warm and cool stones to reduce inflammation and puffiness for £15 [cite: 15]</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <img class="menu-img" src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=400&q=80" alt="Fire & Ice Massage">
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-title">Fire & Ice: Hot and Cold Stone Massage [cite: 16]</span>
+                                <span class="menu-price">50 mins | £70 [cite: 16]</span>
+                            </div>
+                            <p class="menu-desc">An invigorating, contrast-temperature ritual inspired by the therapeutic benefits of thermal therapy. [cite: 17] Perfect for those who love the contrast of a sauna and a plunge pool, this treatment uses alternating temperatures to boost circulation, reduce inflammation, and heal tired muscles. [cite: 18]</p>
+                            <p class="menu-upgrade">+ Upgrade: Add a 15-minute Stone Facial using warm and cool stones to reduce inflammation and puffiness for £15 [cite: 19]</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <img class="menu-img" src="https://images.unsplash.com/photo-1611073114441-2a6575c2f601?auto=format&fit=crop&w=400&q=80" alt="The Ultimate Ritual">
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-title">The Ultimate Ritual: Full Body & Indian Head Massage [cite: 20]</span>
+                                <span class="menu-price">70 mins | £85 [cite: 20]</span>
+                            </div>
+                            <p class="menu-desc">The ultimate head-to-toe escape. [cite: 21] This signature treatment combines traditional full-body massage techniques to release physical tension, paired with a dedicated, stimulating scalp massage to quiet the mind, release jaw tension, and induce a state of pure tranquility. [cite: 21]</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <img class="menu-img" src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=400&q=80" alt="Ultimate Add-On Facial">
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-title">The Ultimate Add-On Facial [cite: 22]</span>
+                                <span class="menu-price">15 mins | £15 [cite: 22]</span>
+                            </div>
+                            <p class="menu-desc">The perfect upgrade. [cite: 23] Treat your face to a gentle, ultra-relaxing massage that boosts circulation and enhances your overall relaxation. [cite: 23] <em>(Available as an add-on to body treatments only). [cite: 24]</em></p>
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="menu-card">
-                    <img class="menu-img" src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=400&q=80" alt="Stretch & Recover Massage">
-                    <div class="menu-info">
-                        <div class="menu-header">
-                            <span class="menu-title>
+            <div id="luxury" class="tab-content">
+                <div class="menu-grid">
+                    <div id="luxury-massage" style="display:none;">[cite: 49]</div>
+                    <div class="menu-card">
+                        <img class="menu-img" src="https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=400&q=80" alt="Sea Salt Renewal Scrub">
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-title">Sea Salt Renewal Scrub & Massage </span>
+                                <span class="menu-price">70 mins | £80 </span>
+                            </div>
+                            <p class="menu-desc">Revitalise dull, tired skin with this deeply cleansing and invigorating full-body treatment. [cite: 51] The ritual begins with a gentle exfoliation using a mineral-rich sea salt scrub infused with botanical oils to sweep away dry skin cells, stimulate circulation, and promote cellular renewal. [cite: 52] Once the scrub is removed, the treatment concludes with a soothing massage using a rich, nourishing oil, leaving your skin beautifully soft, polished, and deeply hydrated. [cite: 53]</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <img class="menu-img" src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=400&q=80" alt="The Blend & Body Massage">
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-title">The Blend & Body Massage </span>
+                                <span class="menu-price">50 mins (70 mins total slot) | £75 </span>
+                            </div>
+                            <p class="menu-desc">A truly personalised sensory journey using luxury essential oils. [cite: 55] Whether you are looking to support physical or emotional well-being—from anxiety and insomnia to muscle fatigue—we begin with an in-depth 20-minute consultation to select the perfect botanical essential oils for your specific needs. [cite: 55] A fresh, bespoke oil blend is then carefully crafted just for you to heal both mind and body during a 50-minute full-body massage. [cite: 56]</p>
+                            <p class="menu-upgrade">+ Upgrade: Add a 15-minute Bespoke Aromatherapy Facial for £20 [cite: 57]</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <img class="menu-img" src="https://images.unsplash.com/photo-1519699606688-0a29a6341d44?auto=format&fit=crop&w=400&q=80" alt="Personalised Holistic Massage">
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-title">Personalised Holistic Massage [cite: 58]</span>
+                                <span class="menu-price">50 mins | £70 or 80 mins | £95 [cite: 58, 59]</span>
+                            </div>
+                            <p class="menu-desc">Completely tailored to your unique physical and emotional well-being. [cite: 60] By combining a variety of advanced massage techniques, this session is uniquely yours. [cite: 60] Your treatment concludes with expert, tailored homecare and lifestyle advice to support your wellness journey long after you leave the table. [cite: 61]</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="seated" class="tab-content">
+                <div id="seated-massage-title" style="display:none;">[cite: 25]</div>
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <img class="menu-img" src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=400&q=80" alt="Seated Indian Head Massage">
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-title">Seated Indian Head Massage [cite: 26]</span>
+                                <span class="menu-price">30 mins | £40 [cite: 26]</span>
+                            </div>
+                            <p class="menu-desc">Performed in a traditional seated position, this focused treatment targets the areas where we hold the most daily stress. [cite: 27] Concentrating on the upper back, shoulders, upper arms, neck, face, and scalp, it is the perfect ritual to clear mental fatigue and ease tension headaches. [cite: 28]</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <img class="menu-img" src="https://images.unsplash.com/photo-1542744094-3a31f103e35f?auto=format&fit=crop&w=400&q=80" alt="Ergonomic Chair Massage">
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-title">On-Site Ergonomic Chair Massage [cite: 29]</span>
+                                <span class="menu-price">20 mins | £30 [cite: 29]</span>
+                            </div>
+                            <p class="menu-desc">A fully clothed, fast-acting treatment performed in a specialised ergonomic chair that completely supports your posture. [cite: 30] Focusing heavily on the back, shoulders, and upper arms, it’s the ideal express option for a quick midday reset. [cite: 31] Perfect for office workers, or the less mobile. [cite: 32]</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="facials" class="tab-content">
+                <div id="facials-title" style="display:none;">[cite: 34]</div>
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <img class="menu-img" src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=400&q=80" alt="Aromatherapy Facial">
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-title">Luxury Bespoke Aromatherapy Facial [cite: 35]</span>
+                                <span class="menu-price">25 mins | £35 [cite: 35]</span>
+                            </div>
+                            <p class="menu-desc">An express skin ritual using custom-blended essential oils targeted to your exact skin concerns, from fine lines to acne. [cite: 35] This treatment incorporates gentle lymphatic drainage techniques and soothing, cooling stones to leave your complexion glowing, generalised, and refreshed. [cite: 36]</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <img class="menu-img" src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=400&q=80" alt="Oat Scrub Facial">
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-title">Oat Scrub & Drain Facial [cite: 37]</span>
+                                <span class="menu-price">25 mins | £35 [cite: 37]</span>
+                            </div>
+                            <p class="menu-desc">Revitalise a dull complexion with this gentle, nourishing oat-based exfoliation. [cite: 37] Followed by a targeted lymphatic facial massage, this treatment is specifically generalised to flush toxins, reduce puffiness, and restore a bright, healthy radiance to the skin. [cite: 38]</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <img class="menu-img" src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=400&q=80" alt="Extended Facial Massage">
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-title">Extended Facial and Upper Body Massage [cite: 39]</span>
+                                <span class="menu-price">50 mins | £60 [cite: 39]</span>
+                            </div>
+                            <p class="menu-desc">The ultimate stress-melting ritual for the upper body. [cite: 39] This deeply restorative treatment combines a targeted, deeply relaxing facial massage to release jaw tension and boost skin radiance, paired with an extended, therapeutic upper chest, shoulder, and scalp massage. [cite: 40] Perfect for quieting a busy mind, easing tension headaches, and leaving you with a glowing, refreshed complexion. [cite: 41]</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="focused" class="tab-content">
+                <div id="focused-treatments-title" style="display:none;">[cite: 42]</div>
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <img class="menu-img" src="https://images.unsplash.com/photo-1620733723572-12c53f779430?auto=format&fit=crop&w=400&q=80" alt="Abdominal Drain">
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-title">Abdominal Detox & Drain [cite: 43]</span>
+                                <span class="menu-price">30 mins | £35 [cite: 43]</span>
+                            </div>
+                            <p class="menu-desc">A specialised, incredibly gentle treatment using targeted massage and lymphatic drainage movements over the abdomen. [cite: 44] Specifically generalised to assist digestion, reduce uncomfortable bloating, and promote a comfortable, happy gut. [cite: 45]</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <img class="menu-img" src="https://images.unsplash.com/photo-1534531173927-aeb928d54385?auto=format&fit=crop&w=400&q=80" alt="Hair Mask & Scalp Ritual">
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-title">Botanical Hair Mask & Scalp Ritual [cite: 46]</span>
+                                <span class="menu-price">30 mins | £40 (or £30 as an add-on) [cite: 46]</span>
+                            </div>
+                            <p class="menu-desc">A deeply conditioning treatment for the hair and mind. [cite: 47] A rich, warm botanical hair mask infused with essential oils is generalised deeply into the scalp and pulled through the hair. [cite: 47] Designed to be left in overnight for maximum restoration. [cite: 48]</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="foot" class="tab-content">
+                <div id="foot-therapies-title" style="display:none;">[cite: 68]</div>
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <img class="menu-img" src="https://images.unsplash.com/photo-1519415387722-a1c3bbff71e4?auto=format&fit=crop&w=400&q=80" alt="Foot Massage">
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-title">Focused Foot Massage [cite: 62]</span>
+                                <span class="menu-price">25 mins | £30 [cite: 62]</span>
+                            </div>
+                            <p class="menu-desc">A treatment to relieve aches and improve circulation, perfect for hard-working feet. [cite: 62]</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <img class="menu-img" src="https://images.unsplash.com/photo-1447433589675-4aaa569f3e05?auto=format&fit=crop&w=400&q=80" alt="Heavy Legs Treatment">
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-title">Heavy Legs: Foot & Leg Massage [cite: 63]</span>
+                                <span class="menu-price">50 mins | £60 [cite: 63]</span>
+                            </div>
+                            <p class="menu-desc">The ultimate relief for tired, heavy legs. [cite: 63] Perfect for pre- and post-natal clients, retail workers, runners, or anyone who spends all day on their feet. [cite: 64] This deeply soothing treatment reduces swelling, eases calf tightness, and restores lightness to the lower body. [cite: 65]</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <img class="menu-img" src="https://images.unsplash.com/photo-1536936581651-a8b814df53c2?auto=format&fit=crop&w=400&q=80" alt="Reflexology">
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-title">Holistic Reflexology [cite: 66]</span>
+                                <span class="menu-price">50 mins | £60 [cite: 66]</span>
+                            </div>
+                            <p class="menu-desc">An ancient healing therapy based on the principle that specific pressure points on the feet correspond to different organs and systems within the body. [cite: 66] By skilfully working these zones, this treatment helps restore balance, reduce stress, and support the body's natural healing processes. [cite: 67]</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="corporate">
+            <h2>Corporate Wellness</h2>
+            <div class="section-subtitle">Workplace Revitalisation</div>
+            <div class="placeholder-widget">
+                <p>[Corporate packages and workspace treatment descriptions details go here]</p>
+            </div>
+        </section>
+
+        <section id="weddings">
+            <h2>Weddings & Bridal</h2>
+            <div class="section-subtitle">Tailored Bridal Packages</div>
+            <div class="placeholder-widget">
+                <p>[Wedding packages, bridal party treatments, and pre-wedding relaxation details go here]</p>
+            </div>
+        </section>
+
+        <section id="locations">
+            <h2>Our Locations</h2>
+            <div class="section-subtitle">Where to find us</div>
+            <div class="placeholder-widget">
+                <p>[Clinic addresses, travel configurations, or mobile coverage zones go here]</p>
+            </div>
+        </section>
+
+        <section id="book">
+            <h2>Schedule an Appointment</h2>
+            <div class="section-subtitle">Secure Your Space</div>
+            <div class="booking-widget placeholder-widget">
+                <p>[Your Booking Calendar Will Load Right Here]</p>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Cedar & Clove Wellness. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            
+            // Hide all tab content components
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            
+            // Remove the 'active' styling class from all tab buttons
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            
+            // Reveal the targeted tab and paint its button active
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+
+</body>
+</html>
