@@ -185,15 +185,15 @@
             <span class="timing-note">All timings relate to the time receiving massage treatment and do not include the consultation time.</span>
             
             <div class="tab-container">
-                <button class="tab-btn active" onclick="openTab(event, 'holistic')">Holistic</button>
-                <button class="tab-btn" onclick="openTab(event, 'luxury')">Luxury</button>
+                <button class="tab-btn active" onclick="openTab(event, 'massages')">Massages</button>
+                <button class="tab-btn" onclick="openTab(event, 'luxury-massages')">Luxury Massages</button>
                 <button class="tab-btn" onclick="openTab(event, 'seated')">Seated</button>
                 <button class="tab-btn" onclick="openTab(event, 'facials')">Facials</button>
                 <button class="tab-btn" onclick="openTab(event, 'focused')">Focused</button>
                 <button class="tab-btn" onclick="openTab(event, 'foot')">Foot</button>
             </div>
 
-            <div id="holistic" class="tab-content active">
+            <div id="massages" class="tab-content active">
                 <div class="menu-grid">
                     <div class="menu-card">
                         <img class="menu-img" src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=400&q=80" alt="Swedish Massage">
@@ -276,7 +276,7 @@
                 </div>
             </div>
 
-            <div id="luxury" class="tab-content">
+            <div id="luxury-massages" class="tab-content">
                 <div class="menu-grid">
                     <div class="menu-card">
                         <img class="menu-img" src="https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=400&q=80" alt="Sea Salt Renewal Scrub">
@@ -349,7 +349,7 @@
                                 <span class="menu-title">Luxury Bespoke Aromatherapy Facial</span>
                                 <span class="menu-price">25 mins | £35</span>
                             </div>
-                            <p class="menu-desc">An express skin ritual using custom-blended essential oils targeted to your exact skin concerns, from fine lines to acne. This treatment incorporates gentle lymphatic drainage techniques and soothing, cooling stones to leave your complexion glowing, generalised, and refreshed.</p>
+                            <p class="menu-desc">An express skin ritual using custom-blended essential oils targeted to your exact skin concerns, from fine lines to acne. This treatment incorporates gentle lymphatic drainage techniques and soothing, cooling stones to leave your complexion glowing, contoured, and refreshed.</p>
                         </div>
                     </div>
 
@@ -360,7 +360,7 @@
                                 <span class="menu-title">Oat Scrub & Drain Facial</span>
                                 <span class="menu-price">25 mins | £35</span>
                             </div>
-                            <p class="menu-desc">Revitalise a dull complexion with this gentle, nourishing oat-based exfoliation. Followed by a targeted lymphatic facial massage, this treatment is specifically generalised to flush toxins, reduce puffiness, and restore a bright, healthy radiance to the skin.</p>
+                            <p class="menu-desc">Revitalise a dull complexion with this gentle, nourishing oat-based exfoliation. Followed by a targeted lymphatic facial massage, this treatment is specifically formulated to flush toxins, reduce puffiness, and restore a bright, healthy radiance to the skin.</p>
                         </div>
                     </div>
 
@@ -386,7 +386,7 @@
                                 <span class="menu-title">Abdominal Detox & Drain</span>
                                 <span class="menu-price">30 mins | £35</span>
                             </div>
-                            <p class="menu-desc">A specialised, incredibly gentle treatment using targeted massage and lymphatic drainage movements over the abdomen. Specifically generalised to assist digestion, reduce uncomfortable bloating, and promote a comfortable, happy gut.</p>
+                            <p class="menu-desc">A specialised, incredibly gentle treatment using targeted massage and lymphatic drainage movements over the abdomen. Specifically designed to assist digestion, reduce uncomfortable bloating, and promote a comfortable, happy gut.</p>
                         </div>
                     </div>
 
@@ -397,7 +397,7 @@
                                 <span class="menu-title">Botanical Hair Mask & Scalp Ritual</span>
                                 <span class="menu-price">30 mins | £40 (or £30 as an add-on)</span>
                             </div>
-                            <p class="menu-desc">A deeply conditioning treatment for the hair and mind. A rich, warm botanical hair mask infused with essential oils is generalised deeply into the scalp and pulled through the hair. Designed to be left in overnight for maximum restoration.</p>
+                            <p class="menu-desc">A deeply conditioning treatment for the hair and mind. A rich, warm botanical hair mask infused with essential oils is massaged deeply into the scalp and pulled through the hair. Designed to be left in overnight for maximum restoration.</p>
                         </div>
                     </div>
                 </div>
@@ -500,6 +500,10 @@
             document.getElementById(tabName).classList.add("active");
             evt.currentTarget.classList.add("active");
         }
+    </script>
+
+</body>
+</html>
     </script>
 
 </body>
