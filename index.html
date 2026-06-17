@@ -147,7 +147,6 @@
 
         /* Placeholder block styles */
         .placeholder-widget { background: #fff; border: 1px solid #e5ded8; border-radius: 12px; padding: 40px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.02); color: #606660; }
-        .booking-widget { min-height: 400px; display: flex; align-items: center; justify-content: center; }
         
         footer { text-align: center; padding: 40px; font-size: 0.85em; color: #888; background: #fff; border-top: 1px solid #e5ded8; margin-top: 120px; }
     </style>
@@ -190,7 +189,7 @@
                 <button class="tab-btn" onclick="openTab(event, 'seated')">Seated</button>
                 <button class="tab-btn" onclick="openTab(event, 'facials')">Facials</button>
                 <button class="tab-btn" onclick="openTab(event, 'focused')">Focused</button>
-                <button class="tab-btn" onclick="openTab(event, 'foot')">Foot</button>
+                <button class="tab-btn" onclick="openTab(event, 'foot-reflexology')">Foot & Reflexology</button>
             </div>
 
             <div id="massages" class="tab-content active">
@@ -279,7 +278,7 @@
             <div id="luxury-massages" class="tab-content">
                 <div class="menu-grid">
                     <div class="menu-card">
-                        <img class="menu-img" src="Salt.png"Sea Salt Renewal Scrub">
+                        <img class="menu-img" src="Salt.png" alt="Sea Salt Renewal Scrub">
                         <div class="menu-info">
                             <div class="menu-header">
                                 <span class="menu-title">Sea Salt Renewal Scrub & Massage</span>
@@ -403,7 +402,7 @@
                 </div>
             </div>
 
-            <div id="foot and reflexology" class="tab-content">
+            <div id="foot-reflexology" class="tab-content">
                 <div class="menu-grid">
                     <div class="menu-card">
                         <img class="menu-img" src="footmassage.jpg" alt="Foot Massage">
@@ -445,27 +444,27 @@
         <section id="corporate">
             <h2>Corporate Wellness</h2>
             <div class="section-subtitle">Workplace Revitalisation</div>
-          <div class="placeholder-widget">
-    <p>A therapist comes to your place of work and conducts our On Site Massage on staff. A great way to boost moral and help ease the tension built up by long office hours. Learn more about our tailored On Site package deals by emailing <a href="mailto:cedarandclovewellness@gmail.com?subject=Corporate On-Site Massage Enquiry" style="color: #a35c58; font-weight: 600; text-decoration: none;">cedarandclovewellness@gmail.com</a></p>
-</div>
+            <div class="placeholder-widget">
+                <p>A therapist comes to your place of work and conducts our On Site Massage on staff. A great way to boost moral and help ease the tension built up by long office hours. Learn more about our tailored On Site package deals by emailing <a href="mailto:cedarandclovewellness@gmail.com?subject=Corporate On-Site Massage Enquiry" style="color: #a35c58; font-weight: 600; text-decoration: none;">cedarandclovewellness@gmail.com</a></p>
+            </div>
         </section>
 
         <section id="weddings">
-          <h2>Bridal & Wedding Wellness</h2>
-<div class="section-subtitle">Pre-Wedding Rest & Rituals</div>
+            <h2>Bridal & Wedding Wellness</h2>
+            <div class="section-subtitle">Pre-Wedding Rest & Rituals</div>
 
-<div class="menu-grid">
-    <div class="menu-card">
-        <img class="menu-img" src="bridal.png" alt="Bridal Wellness Treatment">
-        <div class="menu-info">
-            <div class="menu-header">
-                <span class="menu-title">Bespoke Bridal & Hen Packages</span>
-                <span class="menu-price">Contact Us</span>
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <img class="menu-img" src="bridal.png" alt="Bridal Wellness Treatment">
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <span class="menu-title">Bespoke Bridal & Hen Packages</span>
+                            <span class="menu-price">Contact Us</span>
+                        </div>
+                        <p class="menu-desc">Melt away pre-wedding planning stress and prepare for your special day with our bespoke bridal wellness experiences. From calming at-home pamper packages for your hen do to restorative, glowing treatments designed to center your mind and body before you walk down the aisle, we bring a sanctuary of relaxation directly to you. Learn more about our custom packages by emailing <a href="mailto:cedarandclovewellness@gmail.com?subject=Bridal & Wedding Package Enquiry" style="color: #a35c58; font-weight: 600; text-decoration: none;">cedarandclovewellness@gmail.com</a></p>
+                    </div>
+                </div>
             </div>
-            <p class="menu-desc">Melt away pre-wedding planning stress and prepare for your special day with our bespoke bridal wellness experiences. From calming at-home pamper packages for your hen do to restorative, glowing treatments designed to center your mind and body before you walk down the aisle, we bring a sanctuary of relaxation directly to you. Learn more about our custom packages by emailing <a href="mailto:cedarandclovewellness@gmail.com?subject=Bridal & Wedding Package Enquiry" style="color: #a35c58; font-weight: 600; text-decoration: none;">cedarandclovewellness@gmail.com</a></p>
-        </div>
-    </div>
-</div>
         </section>
 
         <section id="locations">
@@ -510,25 +509,23 @@
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
             
-            // Hide all tab content components
             tabcontent = document.getElementsByClassName("tab-content");
             for (i = 0; i < tabcontent.length; i++) {
                 tabcontent[i].classList.remove("active");
             }
             
-            // Remove the 'active' styling class from all tab buttons
             tablinks = document.getElementsByClassName("tab-btn");
             for (i = 0; i < tablinks.length; i++) {
                 tablinks[i].classList.remove("active");
             }
             
-            // Reveal the targeted tab and paint its button active
             document.getElementById(tabName).classList.add("active");
             evt.currentTarget.classList.add("active");
         }
     </script>
 
 </body>
+</html>
 </html>
     </script>
 
