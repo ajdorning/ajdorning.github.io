@@ -783,6 +783,9 @@
     document.getElementById('ccBookingForm').style.display = 'none';
     document.getElementById('successBox').style.display = 'block';
 
+     // Smoothly focus the screen on the bank details box
+    document.getElementById('successBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
     // Send payload to Google Apps Script in background
     fetch(SCRIPT_URL, {
       method: 'POST',
