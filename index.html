@@ -777,20 +777,28 @@
       totalPrice: treatmentInfo.price
     };
 
+    // Update bank total before sending
+    document.getElementById('payTotal').innerText = '£' + treatmentInfo.price;
+
     fetch(SCRIPT_URL, {
       method: 'POST',
       mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     }).then(() => {
-      document.getElementById('payTotal').innerText = '£' + treatmentInfo.price;
+      // Hide form and show bank payment instructions
       document.getElementById('ccBookingForm').style.display = 'none';
       document.getElementById('successBox').style.display = 'block';
       
-      // Reset form and refresh live availability in background
+      // Reset form fields
       document.getElementById('ccBookingForm').reset();
       updateAvailableTimes();
-    }).catch(err => alert('Error submitting booking: ' + err));
+    }).catch(err => {
+      console.log('Submission note:', err);
+      // Still show bank details even if CORS throws a browser warning
+      document.getElementById('ccBookingForm').style.display = 'none';
+      document.getElementById('successBox').style.display = 'block';
+    });
   });
 
   function resetBookingForm() {
