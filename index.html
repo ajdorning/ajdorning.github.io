@@ -625,42 +625,59 @@
 <script>
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxHjwcJDeXH0bqi1nd0P0tI71k0klnD-C1rVb0lTlm6Gz9peviXYFr1JP3iAzLHjz5b/exec";
 
-  // Prevent same-day booking
+  // Prevent selecting past dates
   const dateInput = document.getElementById('date');
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  dateInput.min = tomorrow.toISOString().split('T')[0];
-  dateInput.value = dateInput.min;
-
-  function handleLocationChange() {
-    const isMobile = document.getElementById('location').value === 'Mobile';
-    document.getElementById('mobileNotice').style.display = isMobile ? 'block' : 'none';
-    document.getElementById('bookingFields').style.display = isMobile ? 'none' : 'block';
-  }
+  const today = new Date().toISOString().split('T')[0];
+  dateInput.setAttribute('min', today);
 
   function calculateTotal() {
     const tVal = document.getElementById('treatment').value.split('|');
     const aVal = document.getElementById('addon').value.split('|');
     const total = parseInt(tVal[2]) + parseInt(aVal[2]);
     document.getElementById('totalDisplay').innerText = 'Total: £' + total;
-    updateAvailableTimes();
     return { price: total, duration: parseInt(tVal[1]) + parseInt(aVal[1]) };
   }
 
- async function updateAvailableTimes() {
+  function handleLocationChange() {
+    const loc = document.getElementById('location').value;
+    const mobilePopup = document.getElementById('mobilePopup');
+    const timeGroup = document.getElementById('timeGroup');
+    const submitBtn = document.getElementById('submitBtn');
+
+    if (loc === 'Mobile Treatment') {
+      mobilePopup.style.display = 'block';
+      timeGroup.style.display = 'none';
+      submitBtn.style.display = 'none';
+    } else {
+      mobilePopup.style.display = 'none';
+      timeGroup.style.display = 'block';
+      submitBtn.style.display = 'block';
+      updateAvailableTimes();
+    }
+  }
+
+  async function updateAvailableTimes() {
     const selectedDateStr = document.getElementById('date').value;
-    const selectedDate = new Date(selectedDateStr);
-    if (isNaN(selectedDate.getTime())) return;
+    if (!selectedDateStr) return;
 
     const timeSelect = document.getElementById('time');
-    timeSelect.innerHTML = '<option>Loading available times...</option>';
+    timeSelect.innerHTML = '<option value="">Checking availability...</option>';
 
-    const day = selectedDate.getDay(); // 0 = Sun, 6 = Sat
-    const isWeekend = (day === 0 || day === 6);
+    // Parse YYYY-MM-DD explicitly in local time to avoid UTC offset bugs
+    const parts = selectedDateStr.split('-');
+    const year = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1;
+    const dayNum = parseInt(parts[2], 10);
+    const selectedDate = new Date(year, month, dayNum);
+
+    if (isNaN(selectedDate.getTime())) return;
+
+    const dayOfWeek = selectedDate.getDay();
+    const isWeekend = (dayOfWeek === 0 || dayOfWeek === 6);
     const maxHour = isWeekend ? 17 : 15; // 5 PM weekends, 3 PM weekdays
 
     const treatmentInfo = calculateTotal();
-    const totalDurationWithBuffer = treatmentInfo.duration;
+    const duration = treatmentInfo.duration;
 
     let busySlots = [];
     try {
@@ -670,39 +687,41 @@
         busySlots = data.busySlots;
       }
     } catch (e) {
-      console.log("Could not fetch calendar availability, defaulting to open hours.", e);
+      console.log("Could not fetch calendar availability:", e);
     }
 
-    // Check if whole day is blocked by an all-day event
     const isAllDayBlocked = busySlots.some(s => s.isAllDay);
     timeSelect.innerHTML = '';
 
     if (isAllDayBlocked) {
       let option = document.createElement('option');
+      option.value = "";
       option.innerText = "Fully Booked / Unavailable";
       timeSelect.appendChild(option);
       return;
     }
 
-    // Generate valid 30-min slots
-    let startMin = 9 * 60;
+    let startMin = 9 * 60; // 9:00 AM
     let endMin = maxHour * 60;
     let availableCount = 0;
 
     for (let time = startMin; time < endMin; time += 30) {
-      if (time + totalDurationWithBuffer <= endMin) {
-        let slotStart = new Date(selectedDateStr + "T00:00:00").getTime() + (time * 60000);
-        let slotEnd = slotStart + ((totalDurationWithBuffer + 20) * 60000);
+      if (time + duration + 20 <= endMin) {
+        let startHour = Math.floor(time / 60);
+        let startMinute = time % 60;
+        
+        let slotStart = new Date(year, month, dayNum, startHour, startMinute, 0).getTime();
+        let slotEnd = slotStart + ((duration + 20) * 60000);
 
-        // Check against existing Google Calendar events
         let hasConflict = busySlots.some(b => {
           return (slotStart < b.end && slotEnd > b.start);
         });
 
         if (!hasConflict) {
-          let h = Math.floor(time / 60);
-          let m = time % 60;
-          let timeStr = (h < 10 ? '0' : '') + h + ':' + (m === 0 ? '00' : m);
+          let hStr = (startHour < 10 ? '0' : '') + startHour;
+          let mStr = (startMinute === 0 ? '00' : startMinute);
+          let timeStr = hStr + ':' + mStr;
+          
           let option = document.createElement('option');
           option.value = timeStr;
           option.innerText = timeStr;
@@ -714,49 +733,57 @@
 
     if (availableCount === 0) {
       let option = document.createElement('option');
-      option.innerText = "No available slots for this date";
+      option.value = "";
+      option.innerText = "Fully Booked / Unavailable";
       timeSelect.appendChild(option);
     }
   }
-  function submitBooking() {
-    const name = document.getElementById('custName').value;
-    const email = document.getElementById('custEmail').value;
-    const phone = document.getElementById('custPhone').value;
-    
-    if(!name || !email || !phone) {
-      alert('Please fill out your contact details.');
-      return;
-    }
 
-    const tVal = document.getElementById('treatment').value.split('|');
-    const aVal = document.getElementById('addon').value.split('|');
-    const bookingData = {
+  // Handle Form Submission
+  document.getElementById('bookingForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const treatmentInfo = calculateTotal();
+    const tName = document.getElementById('treatment').options[document.getElementById('treatment').selectedIndex].text;
+    const aName = document.getElementById('addon').options[document.getElementById('addon').selectedIndex].text;
+
+    const payload = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      phone: document.getElementById('phone').value,
       location: document.getElementById('location').value,
-      treatment: tVal[0],
-      addon: aVal[0],
-      duration: parseInt(tVal[1]) + parseInt(aVal[1]),
-      totalPrice: parseInt(tVal[2]) + parseInt(aVal[2]),
+      treatment: tName,
+      addon: aName,
       date: document.getElementById('date').value,
       time: document.getElementById('time').value,
-      name: name,
-      email: email,
-      phone: phone
+      duration: treatmentInfo.duration,
+      totalPrice: treatmentInfo.price
     };
-
-    document.getElementById('payTotal').innerText = '£' + bookingData.totalPrice;
 
     fetch(SCRIPT_URL, {
       method: 'POST',
       mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(bookingData)
+      body: JSON.stringify(payload)
     }).then(() => {
+      document.getElementById('payTotal').innerText = '£' + treatmentInfo.price;
       document.getElementById('ccBookingForm').style.display = 'none';
       document.getElementById('successBox').style.display = 'block';
+      
+      // Reset form and refresh live availability in background
+      document.getElementById('bookingForm').reset();
+      updateAvailableTimes();
     }).catch(err => alert('Error submitting booking: ' + err));
+  });
+
+  function resetBookingForm() {
+    document.getElementById('successBox').style.display = 'none';
+    document.getElementById('ccBookingForm').style.display = 'block';
+    updateAvailableTimes();
   }
 
-  // Initialize
+  // Initial calculation and load
+  calculateTotal();
   updateAvailableTimes();
 </script>
         <p style="font-size: 1.1rem; font-weight: 600; margin-bottom: 50px;"> 
