@@ -746,44 +746,55 @@
   }
 
   // Handle Form Submission
-  document.getElementById('ccBookingForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
+ function submitBooking() {
+    // Validate required fields manually
+    const name = document.getElementById('custName').value.trim();
+    const email = document.getElementById('custEmail').value.trim();
+    const phone = document.getElementById('custPhone').value.trim();
+    const date = document.getElementById('date').value;
+    const time = document.getElementById('time').value;
+
+    if (!name || !email || !phone || !date || !time) {
+      alert('Please fill in all required fields and select a date and time slot.');
+      return;
+    }
+
     const treatmentInfo = calculateTotal();
     const tName = document.getElementById('treatment').options[document.getElementById('treatment').selectedIndex].text;
     const aName = document.getElementById('addon').options[document.getElementById('addon').selectedIndex].text;
 
     const payload = {
-      name: document.getElementById('custName').value,
-      email: document.getElementById('custEmail').value,
-      phone: document.getElementById('custPhone').value,
+      name: name,
+      email: email,
+      phone: phone,
       location: document.getElementById('location').value,
       treatment: tName,
       addon: aName,
-      date: document.getElementById('date').value,
-      time: document.getElementById('time').value,
+      date: date,
+      time: time,
       duration: treatmentInfo.duration,
       totalPrice: treatmentInfo.price
     };
 
+    // Set bank payment total immediately
     document.getElementById('payTotal').innerText = '£' + treatmentInfo.price;
 
+    // Immediately hide form and show bank details
+    document.getElementById('ccBookingForm').style.display = 'none';
+    document.getElementById('successBox').style.display = 'block';
+
+    // Send payload to Google Apps Script in background
     fetch(SCRIPT_URL, {
       method: 'POST',
       mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     }).then(() => {
-      document.getElementById('ccBookingForm').style.display = 'none';
-      document.getElementById('successBox').style.display = 'block';
-      document.getElementById('ccBookingForm').reset();
-      updateAvailableTimes();
+      console.log('Booking submitted successfully');
     }).catch(err => {
-      console.log('Submission note:', err);
-      document.getElementById('ccBookingForm').style.display = 'none';
-      document.getElementById('successBox').style.display = 'block';
+      console.log('Submission warning:', err);
     });
-  });
+  }
 
   function resetBookingForm() {
     document.getElementById('successBox').style.display = 'none';
