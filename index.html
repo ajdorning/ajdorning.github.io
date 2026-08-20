@@ -540,8 +540,188 @@
         <div class="section-subtitle">Secure Your Space</div> 
          
         <p style="font-size: 1rem; color: #444; max-width: 600px; margin-bottom: 25px;"> 
-            Our online booking system is currently preparing to launch. In the meantime, we would love to welcome you. To check availability or secure your space, please reach out to us directly via email. 
-        </p> 
+            To book at our Silverwood Lodges Treatment Room, please use the below booking form. For mobile services, please email cedarandclovewellness@gmail.com
+            <div class="cc-booking-card" id="ccBookingForm">
+  <h2>Book Your Session</h2>
+
+  <div class="cc-group">
+    <label>Location</label>
+    <select id="location" onchange="handleLocationChange()">
+      <option value="Silverwood">Silverwood Lodges Resort</option>
+      <option value="Mobile">Mobile Treatment</option>
+    </select>
+    <div id="mobileNotice" class="cc-popup">
+      Please email <strong>cedarandclovewellness@gmail.com</strong> to book a mobile massage.
+    </div>
+  </div>
+
+  <div id="bookingFields">
+    <div class="cc-group">
+      <label>Select Treatment</label>
+      <select id="treatment" onchange="calculateTotal()">
+        <option value="Swedish|50|65">Swedish Massage (50 mins) - £65</option>
+        <option value="Stretch & Recover|70|80">Stretch & Recover Massage (70 mins) - £80</option>
+        <option value="Relax & Drain|50|65">Relax & Drain Massage (50 mins) - £65</option>
+        <option value="Hot Stone|50|70">Hot Stone Experience (50 mins) - £70</option>
+        <option value="Fire & Ice|50|70">Fire & Ice: Hot and Cold Stone Massage (50 mins) - £70</option>
+        <option value="Ultimate Ritual|70|85">The Ultimate Ritual: Full Body & Indian Head (70 mins) - £85</option>
+        <option value="Sea Salt Renewal|70|80">Sea Salt Renewal Scrub & Massage (70 mins) - £80</option>
+        <option value="Blend & Body|50|75">The Blend & Body Massage (50 mins) - £75</option>
+        <option value="Personalised 50|50|70">Personalised Holistic Massage (50 mins) - £70</option>
+        <option value="Personalised 80|80|95">Personalised Holistic Massage (80 mins) - £95</option>
+        <option value="Seated Indian Head|30|40">Seated Indian Head Massage (30 mins) - £40</option>
+        <option value="Ergonomic Chair|20|30">On-Site Ergonomic Chair Massage (20 mins) - £30</option>
+        <option value="Luxury Facial|25|35">Luxury Bespoke Aromatherapy Facial (25 mins) - £35</option>
+        <option value="Oat Scrub Facial|25|35">Oat Scrub & Drain Facial (25 mins) - £35</option>
+        <option value="Extended Facial|50|60">Extended Facial and Upper Body Massage (50 mins) - £60</option>
+        <option value="Abdominal Detox|30|35">Abdominal Detox & Drain (30 mins) - £35</option>
+        <option value="Botanical Scalp|30|40">Botanical Hair Mask & Scalp Ritual (30 mins) - £40</option>
+        <option value="Foot Massage|25|30">Focused Foot Massage (25 mins) - £30</option>
+        <option value="Heavy Legs|50|60">Heavy Legs: Foot & Leg Massage (50 mins) - £60</option>
+        <option value="Reflexology|50|60">Holistic Reflexology (50 mins) - £60</option>
+      </select>
+    </div>
+
+    <div class="cc-group">
+      <label>Add-on Facial (Optional)</label>
+      <select id="addon" onchange="calculateTotal()">
+        <option value="None|0|0">None (£0)</option>
+        <option value="Warm & Cool Stone Facial|15|15">15-min Warm & Cool Stone Facial (£15)</option>
+        <option value="Ultimate Add-On Facial|15|15">15-min Ultimate Add-On Facial (£15)</option>
+        <option value="Bespoke Aromatherapy Facial|15|20">15-min Bespoke Aromatherapy Facial (£20)</option>
+      </select>
+    </div>
+
+    <div class="cc-group">
+      <label>Date</label>
+      <input type="date" id="date" onchange="updateAvailableTimes()">
+    </div>
+
+    <div class="cc-group">
+      <label>Time Slot</label>
+      <select id="time"></select>
+    </div>
+
+    <div class="cc-group"><label>Your Full Name</label><input type="text" id="custName" required></div>
+    <div class="cc-group"><label>Email Address</label><input type="email" id="custEmail" required></div>
+    <div class="cc-group"><label>Phone Number</label><input type="tel" id="custPhone" required></div>
+
+    <div class="cc-total" id="totalDisplay">Total: £65</div>
+
+    <button class="cc-btn" onclick="submitBooking()">Submit Provisional Booking</button>
+  </div>
+</div>
+
+<div class="cc-booking-card cc-success-box" id="successBox">
+  <h3 style="color: #2e6b38;">Booking Requested!</h3>
+  <p>Your appointment has been provisionally reserved.</p>
+  <p><strong>Please complete your transfer to secure your slot:</strong></p>
+  <p style="background:#fff; padding:12px; border:1px solid #ccc; border-radius:4px;">
+    <strong>Account Name:</strong> Cedar & Clove Wellness<br>
+    <strong>Sort Code:</strong> XX-XX-XX<br>
+    <strong>Account No:</strong> XXXXXXXX<br>
+    <strong>Total:</strong> <span id="payTotal"></span>
+  </p>
+  <p><small>You will receive a confirmation email once payment is verified.</small></p>
+</div>
+
+<script>
+  const SCRIPT_URL = https://script.google.com/macros/s/AKfycbxHjwcJDeXH0bqi1nd0P0tI71k0klnD-C1rVb0lTlm6Gz9peviXYFr1JP3iAzLHjz5b/exec;
+
+  // Prevent same-day booking
+  const dateInput = document.getElementById('date');
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  dateInput.min = tomorrow.toISOString().split('T')[0];
+  dateInput.value = dateInput.min;
+
+  function handleLocationChange() {
+    const isMobile = document.getElementById('location').value === 'Mobile';
+    document.getElementById('mobileNotice').style.display = isMobile ? 'block' : 'none';
+    document.getElementById('bookingFields').style.display = isMobile ? 'none' : 'block';
+  }
+
+  function calculateTotal() {
+    const tVal = document.getElementById('treatment').value.split('|');
+    const aVal = document.getElementById('addon').value.split('|');
+    const total = parseInt(tVal[2]) + parseInt(aVal[2]);
+    document.getElementById('totalDisplay').innerText = 'Total: £' + total;
+    updateAvailableTimes();
+    return { price: total, duration: parseInt(tVal[1]) + parseInt(aVal[1]) };
+  }
+
+  function updateAvailableTimes() {
+    const selectedDate = new Date(document.getElementById('date').value);
+    if (isNaN(selectedDate.getTime())) return;
+
+    const day = selectedDate.getDay(); // 0 = Sun, 6 = Sat
+    const isWeekend = (day === 0 || day === 6);
+    const maxHour = isWeekend ? 17 : 15; // 5 PM weekends, 3 PM weekdays
+
+    const treatmentInfo = calculateTotal();
+    const totalDurationWithBuffer = treatmentInfo.duration + 20;
+
+    const timeSelect = document.getElementById('time');
+    timeSelect.innerHTML = '';
+
+    // Slots from 9 AM
+    let startMin = 9 * 60;
+    let endMin = maxHour * 60;
+
+    for (let time = startMin; time < endMin; time += 30) {
+      if (time + totalDurationWithBuffer <= endMin) {
+        let h = Math.floor(time / 60);
+        let m = time % 60;
+        let timeStr = (h < 10 ? '0' : '') + h + ':' + (m === 0 ? '00' : m);
+        let option = document.createElement('option');
+        option.value = timeStr;
+        option.innerText = timeStr;
+        timeSelect.appendChild(option);
+      }
+    }
+  }
+
+  function submitBooking() {
+    const name = document.getElementById('custName').value;
+    const email = document.getElementById('custEmail').value;
+    const phone = document.getElementById('custPhone').value;
+    
+    if(!name || !email || !phone) {
+      alert('Please fill out your contact details.');
+      return;
+    }
+
+    const tVal = document.getElementById('treatment').value.split('|');
+    const aVal = document.getElementById('addon').value.split('|');
+    const bookingData = {
+      location: document.getElementById('location').value,
+      treatment: tVal[0],
+      addon: aVal[0],
+      duration: parseInt(tVal[1]) + parseInt(aVal[1]),
+      totalPrice: parseInt(tVal[2]) + parseInt(aVal[2]),
+      date: document.getElementById('date').value,
+      time: document.getElementById('time').value,
+      name: name,
+      email: email,
+      phone: phone
+    };
+
+    document.getElementById('payTotal').innerText = '£' + bookingData.totalPrice;
+
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(bookingData)
+    }).then(() => {
+      document.getElementById('ccBookingForm').style.display = 'none';
+      document.getElementById('successBox').style.display = 'block';
+    }).catch(err => alert('Error submitting booking: ' + err));
+  }
+
+  // Initialize
+  updateAvailableTimes();
+</script>
         <p style="font-size: 1.1rem; font-weight: 600; margin-bottom: 50px;"> 
             Email to book: <a href="mailto:cedarandclovewellness@gmail.com?subject=Appointment Booking Request" style="color: #a35c58; text-decoration: none; border-bottom: 2px solid #a35c58; padding-bottom: 2px;">cedarandclovewellness@gmail.com</a> 
         </p> 
