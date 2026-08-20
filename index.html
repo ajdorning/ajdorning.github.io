@@ -663,7 +663,7 @@
     const maxHour = isWeekend ? 17 : 15; // 5 PM weekends, 3 PM weekdays
 
     const treatmentInfo = calculateTotal();
-    const totalDurationWithBuffer = treatmentInfo.duration + 20;
+    const totalDurationWithBuffer = treatmentInfo.duration;
 
     let busySlots = [];
     try {
@@ -695,7 +695,7 @@
     for (let time = startMin; time < endMin; time += 30) {
       if (time + totalDurationWithBuffer <= endMin) {
         let slotStart = new Date(selectedDateStr + "T00:00:00").getTime() + (time * 60000);
-        let slotEnd = slotStart + (totalDurationWithBuffer * 60000);
+        let slotEnd = slotStart + ((totalDurationWithBuffer + 20) * 60000);
 
         // Check against existing Google Calendar events
         let hasConflict = busySlots.some(b => {
