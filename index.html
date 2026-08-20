@@ -10,6 +10,43 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;600&display=swap" rel="stylesheet"> 
  
 <style> 
+    .cc-booking-card {
+    max-width: 580px;
+    margin: 20px auto;
+    padding: 30px;
+    background: #fdfbf7;
+    border: 1px solid #dcd3c7;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+  }
+  .cc-booking-card h2 {
+    font-family: 'Cormorant Garamond', serif;
+    color: #4e1a17;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .cc-group { margin-bottom: 18px; }
+  .cc-group label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 14px; }
+  .cc-group select, .cc-group input {
+    width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;
+  }
+  .cc-popup {
+    background: #fbf3d5; border: 1px solid #e0be68; padding: 15px; border-radius: 6px;
+    color: #634a00; font-size: 14px; margin-top: 10px; display: none;
+  }
+  .cc-total {
+    font-size: 18px; font-weight: bold; color: #4e1a17; text-align: right; margin: 20px 0;
+  }
+  .cc-btn {
+    width: 100%; background: #4e1a17; color: white; border: none; padding: 14px;
+    font-size: 16px; border-radius: 4px; cursor: pointer; transition: background 0.2s;
+  }
+  .cc-btn:hover { background: #6a2521; }
+  .cc-success-box {
+    display: none; background: #eaf4ed; border: 1px solid #94c8a0; padding: 20px;
+    border-radius: 6px; text-align: center; line-height: 1.6;
+  }
     * { box-sizing: border-box; margin: 0; padding: 0; } 
     body {  
         font-family: 'Montserrat', sans-serif;  
