@@ -650,9 +650,13 @@
     return { price: total, duration: parseInt(tVal[1]) + parseInt(aVal[1]) };
   }
 
-  function updateAvailableTimes() {
-    const selectedDate = new Date(document.getElementById('date').value);
+ async function updateAvailableTimes() {
+    const selectedDateStr = document.getElementById('date').value;
+    const selectedDate = new Date(selectedDateStr);
     if (isNaN(selectedDate.getTime())) return;
+
+    const timeSelect = document.getElementById('time');
+    timeSelect.innerHTML = '<option>Loading available times...</option>';
 
     const day = selectedDate.getDay(); // 0 = Sun, 6 = Sat
     const isWeekend = (day === 0 || day === 6);
@@ -661,26 +665,62 @@
     const treatmentInfo = calculateTotal();
     const totalDurationWithBuffer = treatmentInfo.duration + 20;
 
-    const timeSelect = document.getElementById('time');
+    let busySlots = [];
+    try {
+      const resp = await fetch(SCRIPT_URL + "?date=" + selectedDateStr);
+      const data = await resp.json();
+      if (data.busySlots) {
+        busySlots = data.busySlots;
+      }
+    } catch (e) {
+      console.log("Could not fetch calendar availability, defaulting to open hours.", e);
+    }
+
+    // Check if whole day is blocked by an all-day event
+    const isAllDayBlocked = busySlots.some(s => s.isAllDay);
     timeSelect.innerHTML = '';
 
-    // Slots from 9 AM
+    if (isAllDayBlocked) {
+      let option = document.createElement('option');
+      option.innerText = "Fully Booked / Unavailable";
+      timeSelect.appendChild(option);
+      return;
+    }
+
+    // Generate valid 30-min slots
     let startMin = 9 * 60;
     let endMin = maxHour * 60;
+    let availableCount = 0;
 
     for (let time = startMin; time < endMin; time += 30) {
       if (time + totalDurationWithBuffer <= endMin) {
-        let h = Math.floor(time / 60);
-        let m = time % 60;
-        let timeStr = (h < 10 ? '0' : '') + h + ':' + (m === 0 ? '00' : m);
-        let option = document.createElement('option');
-        option.value = timeStr;
-        option.innerText = timeStr;
-        timeSelect.appendChild(option);
+        let slotStart = new Date(selectedDateStr + "T00:00:00").getTime() + (time * 60000);
+        let slotEnd = slotStart + (totalDurationWithBuffer * 60000);
+
+        // Check against existing Google Calendar events
+        let hasConflict = busySlots.some(b => {
+          return (slotStart < b.end && slotEnd > b.start);
+        });
+
+        if (!hasConflict) {
+          let h = Math.floor(time / 60);
+          let m = time % 60;
+          let timeStr = (h < 10 ? '0' : '') + h + ':' + (m === 0 ? '00' : m);
+          let option = document.createElement('option');
+          option.value = timeStr;
+          option.innerText = timeStr;
+          timeSelect.appendChild(option);
+          availableCount++;
+        }
       }
     }
-  }
 
+    if (availableCount === 0) {
+      let option = document.createElement('option');
+      option.innerText = "No available slots for this date";
+      timeSelect.appendChild(option);
+    }
+  }
   function submitBooking() {
     const name = document.getElementById('custName').value;
     const email = document.getElementById('custEmail').value;
