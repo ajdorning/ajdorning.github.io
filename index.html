@@ -552,7 +552,24 @@
     </div>
   </div>
 
+<form id="ccBookingForm">
   <div id="bookingFields">
+
+    <div class="cc-group">
+      <label>Location</label>
+      <select id="location" onchange="handleLocationChange()">
+        <option value="Studio">In-Studio Treatment</option>
+        <option value="Mobile Treatment">Mobile Treatment</option>
+      </select>
+    </div>
+
+    <!-- Hidden popup info for mobile inquiries -->
+    <div id="mobilePopup" style="display:none; background:#fdf8f5; border:1px solid #e5ded8; padding:15px; border-radius:8px; margin-bottom:15px;">
+      <p style="margin:0; font-size:0.9rem; color:#606660;">
+        For mobile or on-site bookings, please contact us directly by email so we can verify travel coverage and scheduling for your location.
+      </p>
+    </div>
+
     <div class="cc-group">
       <label>Select Treatment</label>
       <select id="treatment" onchange="calculateTotal()">
@@ -594,7 +611,7 @@
       <input type="date" id="date" onchange="updateAvailableTimes()">
     </div>
 
-    <div class="cc-group">
+    <div class="cc-group" id="timeGroup">
       <label>Time Slot</label>
       <select id="time"></select>
     </div>
@@ -605,11 +622,11 @@
 
     <div class="cc-total" id="totalDisplay">Total: £65</div>
 
-    <button class="cc-btn" onclick="submitBooking()">Submit Provisional Booking</button>
+    <button type="submit" class="cc-btn" id="submitBtn">Submit Provisional Booking</button>
   </div>
-</div>
+</form>
 
-<div class="cc-booking-card cc-success-box" id="successBox">
+<div class="cc-booking-card cc-success-box" id="successBox" style="display:none;">
   <h3 style="color: #2e6b38;">Booking Requested!</h3>
   <p>Your appointment has been provisionally reserved.</p>
   <p><strong>Please complete your transfer to secure your slot:</strong></p>
@@ -645,13 +662,13 @@
     const submitBtn = document.getElementById('submitBtn');
 
     if (loc === 'Mobile Treatment') {
-      mobilePopup.style.display = 'block';
-      timeGroup.style.display = 'none';
-      submitBtn.style.display = 'none';
+      if (mobilePopup) mobilePopup.style.display = 'block';
+      if (timeGroup) timeGroup.style.display = 'none';
+      if (submitBtn) submitBtn.style.display = 'none';
     } else {
-      mobilePopup.style.display = 'none';
-      timeGroup.style.display = 'block';
-      submitBtn.style.display = 'block';
+      if (mobilePopup) mobilePopup.style.display = 'none';
+      if (timeGroup) timeGroup.style.display = 'block';
+      if (submitBtn) submitBtn.style.display = 'block';
       updateAvailableTimes();
     }
   }
@@ -740,7 +757,7 @@
   }
 
   // Handle Form Submission
-  document.getElementById('bookingForm').addEventListener('submit', function(e) {
+  document.getElementById('ccBookingForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
     const treatmentInfo = calculateTotal();
@@ -748,9 +765,9 @@
     const aName = document.getElementById('addon').options[document.getElementById('addon').selectedIndex].text;
 
     const payload = {
-      name: document.getElementById('name').value,
-      email: document.getElementById('email').value,
-      phone: document.getElementById('phone').value,
+      name: document.getElementById('custName').value,
+      email: document.getElementById('custEmail').value,
+      phone: document.getElementById('custPhone').value,
       location: document.getElementById('location').value,
       treatment: tName,
       addon: aName,
@@ -771,7 +788,7 @@
       document.getElementById('successBox').style.display = 'block';
       
       // Reset form and refresh live availability in background
-      document.getElementById('bookingForm').reset();
+      document.getElementById('ccBookingForm').reset();
       updateAvailableTimes();
     }).catch(err => alert('Error submitting booking: ' + err));
   });
@@ -786,29 +803,27 @@
   calculateTotal();
   updateAvailableTimes();
 </script>
-        <p style="font-size: 1.1rem; font-weight: 600; margin-bottom: 50px;"> 
-            Email to book: <a href="mailto:cedarandclovewellness@gmail.com?subject=Appointment Booking Request" style="color: #a35c58; text-decoration: none; border-bottom: 2px solid #a35c58; padding-bottom: 2px;">cedarandclovewellness@gmail.com</a> 
-        </p> 
-        
-        <div style="background: #ffffff; border: 1px solid #e5ded8; border-radius: 12px; padding: 30px; text-align: left; max-width: 650px; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.01);"> 
-            <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: #161a16; margin-bottom: 10px;">Important Client Notice</h3> 
-             
-            <p style="font-size: 0.85rem; color: #606660; line-height: 1.5; margin-bottom: 15px;"> 
-                <strong>Health & Safety:</strong> For your personal well-being, certain medical conditions or treatments may require modifications or act as a contraindication to massage therapy. Please fully disclose any health concerns, acute conditions, injuries, allergies, or pregnancies when requesting your appointment. 
-            </p> 
-             
-            <p style="font-size: 0.85rem; color: #606660; line-height: 1.5;"> 
-                <strong>Code of Conduct:</strong> All services provided by Cedar & Clove Wellness are strictly professional, therapeutic, and ethical. Any inappropriate, suggestive, or disrespectful behaviour will result in the immediate cessation of the treatment. The full session fee will remain due, and further legal action or prosecution will be pursued. 
-            </p> 
-        </div> 
-    </section> 
- 
+
+<p style="font-size: 1.1rem; font-weight: 600; margin-bottom: 50px;"> 
+    Email to book: <a href="mailto:cedarandclovewellness@gmail.com?subject=Appointment Booking Request" style="color: #a35c58; text-decoration: none; border-bottom: 2px solid #a35c58; padding-bottom: 2px;">cedarandclovewellness@gmail.com</a> 
+</p> 
+
+<div style="background: #ffffff; border: 1px solid #e5ded8; border-radius: 12px; padding: 30px; text-align: left; max-width: 650px; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.01);"> 
+    <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: #161a16; margin-bottom: 10px;">Important Client Notice</h3> 
+     
+    <p style="font-size: 0.85rem; color: #606660; line-height: 1.5; margin-bottom: 15px;"> 
+        <strong>Health & Safety:</strong> For your personal well-being, certain medical conditions or treatments may require modifications or act as a contraindication to massage therapy. Please fully disclose any health concerns, acute conditions, injuries, allergies, or pregnancies when requesting your appointment. 
+    </p> 
+     
+    <p style="font-size: 0.85rem; color: #606660; line-height: 1.5;"> 
+        <strong>Code of Conduct:</strong> All services provided by Cedar & Clove Wellness are strictly professional, therapeutic, and ethical. Any inappropriate, suggestive, or disrespectful behaviour will result in the immediate cessation of the treatment. The full session fee will remain due, and further legal action or prosecution will be pursued. 
+    </p> 
 </div> 
- 
+
 <footer> 
     <p>&copy; 2026 Cedar & Clove Wellness. All rights reserved.</p> 
 </footer> 
- 
+
 <script> 
     function openTab(evt, tabName) { 
         var i, tabcontent, tablinks; 
@@ -828,8 +843,4 @@
     } 
 </script> 
 </body> 
-
-</html> 
-
-</body>
 </html>
