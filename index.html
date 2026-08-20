@@ -845,7 +845,12 @@
          
         document.getElementById(tabName).classList.add("active"); 
         evt.currentTarget.classList.add("active"); 
+
+        // Reset the booking form view whenever the Book tab is clicked
+        if (tabName === 'book' && typeof resetBookingForm === 'function') {
+            resetBookingForm();
+        }
     } 
-</script> 
+</script>
 </body> 
 </html>
