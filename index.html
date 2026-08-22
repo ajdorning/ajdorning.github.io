@@ -210,7 +210,7 @@
     <a href="#corporate">Corporate</a> 
     <a href="#weddings">Weddings</a> 
     <a href="#locations">Locations</a> 
-    <a href="#book">Book Now</a> 
+    <a href="#book" onclick="resetBookingForm()">BOOK</a>
 </nav> 
  
 <div class="container"> 
@@ -800,9 +800,18 @@
   }
 
   function resetBookingForm() {
-    document.getElementById('successBox').style.display = 'none';
-    document.getElementById('ccBookingForm').style.display = 'block';
-    updateAvailableTimes();
+    const successBox = document.getElementById('successBox');
+    const bookingForm = document.getElementById('ccBookingForm');
+
+    if (successBox) successBox.style.display = 'none';
+    if (bookingForm) {
+      bookingForm.style.display = 'block';
+      bookingForm.reset();
+    }
+
+    // Recalculate default total and refresh available times
+    if (typeof calculateTotal === 'function') calculateTotal();
+    if (typeof updateAvailableTimes === 'function') updateAvailableTimes();
   }
 
   calculateTotal();
