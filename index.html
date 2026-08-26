@@ -714,7 +714,7 @@
     let endMin = maxHour * 60;
     let availableCount = 0;
 
-    for (let time = startMin; time < endMin; time += 30) {
+    for (let time = startMin; time < endMin; time += 15) {
       if (time + duration + 20 <= endMin) {
         let startHour = Math.floor(time / 60);
         let startMinute = time % 60;
