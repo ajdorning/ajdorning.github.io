@@ -727,9 +727,9 @@
         });
 
         if (!hasConflict) {
-          let hStr = (startHour < 10 ? '0' : '') + startHour;
-          let mStr = (startMinute === 0 ? '00' : startMinute);
-          let timeStr = hStr + ':' + mStr;
+         let hStr = (startHour < 10 ? '0' : '') + startHour;
+let mStr = (startMinute < 10 ? '0' : '') + startMinute;
+let timeStr = hStr + ':' + mStr;
           
           let option = document.createElement('option');
           option.value = timeStr;
