@@ -522,10 +522,10 @@
         <h2>Our Locations</h2> 
         <div class="section-subtitle">Where to find us</div> 
         <div class="placeholder-widget" style="text-align: left; max-width: 650px; margin: 0 auto;"> 
-            <p style="margin-bottom: 20px; font-size: 1.05rem; font-weight: 600; color: #161a16;">Bring the sanctuary to you.</p> 
-            <p style="margin-bottom: 20px;">We currently offer our full menu of restorative treatments at Silverwood Lodges, Errol,  and on a mobile basis throughout the <strong>Carse of Gowrie</strong> and surrounding local areas. To ensure we can accommodate your location, please reach out via email to verify your area prior to scheduling.</p> 
+            <p style="margin-bottom: 20px; font-size: 1.05rem; font-weight: 600; color: #161a16;">Bring the sanctuary to you or get pampered at Silverwood Lodges with added Spa facilities.</p> 
+            <p style="margin-bottom: 20px;">We currently offer our full menu of restorative treatments at Silverwood Lodges, Errol, where you can add on Spa facility use for only £10 or Spa and Gym for £16.  We also operate on a mobile basis to holiday homes throughout the <strong>Carse of Gowrie</strong> and surrounding local areas. To ensure we can accommodate your location, please reach out via email to verify your area prior to scheduling.</p> 
              <p style="margin-bottom: 20px; color: #444; line-height: 1.6;"> 
-<strong>Mobile Services &amp; Home Visits:</strong> We gladly offer our mobile treatment service to surrounding hotels and holiday lets. To maintain the highest standard of safety for our practitioners, private residential home visits are available exclusively by referral, or following an initial consultation or treatment at one of our dedicated static sites. We reserve the right to decline any booking requests that do not meet these safety criteria. 
+<strong>Mobile Services &amp; Home Visits:</strong> We gladly offer our mobile treatment service to surrounding hotels and holiday lets. To maintain the highest standard of safety for our practitioners, private residential home visits are available exclusively by referral, or may be available following an initial consultation or treatment at one of our dedicated static sites. We reserve the right to decline any booking requests that do not meet these safety criteria. 
   
 
            <hr style="border: 0; border-top: 1px solid #e5ded8; margin: 25px 0;"> 
@@ -594,6 +594,22 @@
                 <option value="Bespoke Aromatherapy Facial|15|20">15-min Bespoke Aromatherapy Facial (£20)</option>
               </select>
             </div>
+
+              <!-- Additional Treatment / Facilities Dropdown -->
+<div class="form-group" style="margin-bottom: 20px;">
+  <label for="extraTreatment" style="display: block; font-weight: 600; margin-bottom: 5px;">Additional Treatment or Spa Pass</label>
+  <select id="extraTreatment" onchange="calculateTotal(); updateAvailableTimes();" style="width: 100%; padding: 10px; border: 1px solid #e5ded8; border-radius: 6px;">
+    <option value="None|0|0">None (£0)</option>
+    
+    <!-- Spa & Gym Passes (0 duration added so appointment length doesn't stretch) -->
+    <option value="Silverwood Spa Pass|0|10">Silverwood Spa Pass (£10)</option>
+    <option value="Silverwood Spa & Gym Pass|0|16">Silverwood Spa & Gym Pass (£16)</option>
+
+    <!-- Additional Treatments (Format: Name | Duration in Mins | Price in £) -->
+    <option value="Express Head & Shoulder Massage|20|25">Express Head & Shoulder Massage (20 mins - £25)</option>
+    <option value="Hand & Foot Reflex Reset|30|35">Hand & Foot Reflex Reset (30 mins - £35)</option>
+  </select>
+</div>
 
             <div class="cc-group">
               <label>Date</label>
