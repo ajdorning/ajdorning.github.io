@@ -656,13 +656,20 @@
   const today = new Date().toISOString().split('T')[0];
   if (dateInput) dateInput.setAttribute('min', today);
 
-  function calculateTotal() {
-    const tVal = document.getElementById('treatment').value.split('|');
-    const aVal = document.getElementById('addon').value.split('|');
-    const total = parseInt(tVal[2]) + parseInt(aVal[2]);
-    document.getElementById('totalDisplay').innerText = 'Total: £' + total;
-    return { price: total, duration: parseInt(tVal[1]) + parseInt(aVal[1]) };
-  }
+ function calculateTotal() {
+  const tVal = document.getElementById('treatment').value.split('|');
+  const aVal = document.getElementById('addon').value.split('|');
+  
+  // Read extra treatment/spa pass dropdown (with fallback if empty)
+  const extraElem = document.getElementById('extraTreatment');
+  const eVal = extraElem ? extraElem.value.split('|') : ['None', '0', '0'];
+
+  const totalPrice = parseInt(tVal[2], 10) + parseInt(aVal[2], 10) + parseInt(eVal[2], 10);
+  const totalDuration = parseInt(tVal[1], 10) + parseInt(aVal[1], 10) + parseInt(eVal[1], 10);
+
+  document.getElementById('totalDisplay').innerText = 'Total: £' + totalPrice;
+  return { price: totalPrice, duration: totalDuration };
+}
 
   function handleLocationChange() {
     const loc = document.getElementById('location').value;
@@ -764,36 +771,54 @@ let timeStr = hStr + ':' + mStr;
     }
   }
 
-  // Handle Form Submission
  function submitBooking() {
-    // Validate required fields manually
-    const name = document.getElementById('custName').value.trim();
-    const email = document.getElementById('custEmail').value.trim();
-    const phone = document.getElementById('custPhone').value.trim();
-    const date = document.getElementById('date').value;
-    const time = document.getElementById('time').value;
+  const name = document.getElementById('custName').value.trim();
+  const email = document.getElementById('custEmail').value.trim();
+  const phone = document.getElementById('custPhone').value.trim();
+  const date = document.getElementById('date').value;
+  const time = document.getElementById('time').value;
 
-    if (!name || !email || !phone || !date || !time) {
-      alert('Please fill in all required fields and select a date and time slot.');
-      return;
-    }
+  if (!name || !email || !phone || !date || !time) {
+    alert('Please fill in all required fields and select a date and time slot.');
+    return;
+  }
 
-    const treatmentInfo = calculateTotal();
-    const tName = document.getElementById('treatment').options[document.getElementById('treatment').selectedIndex].text;
-    const aName = document.getElementById('addon').options[document.getElementById('addon').selectedIndex].text;
+  const treatmentInfo = calculateTotal();
+  const tName = document.getElementById('treatment').options[document.getElementById('treatment').selectedIndex].text;
+  const aName = document.getElementById('addon').options[document.getElementById('addon').selectedIndex].text;
+  
+  const extraSelect = document.getElementById('extraTreatment');
+  const eName = extraSelect ? extraSelect.options[extraSelect.selectedIndex].text : 'None (£0)';
 
-   const payload = {
+  const payload = {
     name: name,
     email: email,
     phone: phone,
     location: document.getElementById('location').value,
     treatment: tName,
-    addon: aName,
+    addon: aName + (eName !== 'None (£0)' ? ' + ' + eName : ''), // Appends extra treatment/spa pass
     date: date,
     time: time,
-    duration: treatmentInfo.duration + 20, // <--- ADD + 20 HERE
+    duration: treatmentInfo.duration + 20, // Total treatment length + 20-min buffer
     totalPrice: treatmentInfo.price
   };
+
+  document.getElementById('payTotal').innerText = '£' + treatmentInfo.price;
+  document.getElementById('ccBookingForm').style.display = 'none';
+  document.getElementById('successBox').style.display = 'block';
+  document.getElementById('successBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  }).then(() => {
+    console.log('Booking submitted successfully');
+  }).catch(err => {
+    console.log('Submission warning:', err);
+  });
+}
      
     // Set bank payment total immediately
     document.getElementById('payTotal').innerText = '£' + treatmentInfo.price;
