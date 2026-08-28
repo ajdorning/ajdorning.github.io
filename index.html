@@ -810,6 +810,7 @@ async function updateAvailableTimes() {
       if (data.busySlots) {
         busySlots = data.busySlots;
       }
+        console.log("Fetched Busy Slots from Google Calendar:", busySlots);
     } catch (e) {
       console.log("Could not fetch calendar availability:", e);
     }
