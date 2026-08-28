@@ -532,7 +532,7 @@
              
     </section> 
  
-    <section id="book"> 
+<section id="book"> 
         <h2>Schedule an Appointment</h2> 
         <div class="section-subtitle">Secure Your Space</div> 
          
@@ -550,12 +550,22 @@
       <select id="location" name="location" required onchange="handleLocationChange()">
         <option value="" disabled selected>Select location...</option>
         <option value="Silverwood Spa Room">Silverwood Spa Room</option>
-        <option value="Mobile Visit">Mobile Visit (Client Home)</option>
+        <option value="Mobile to home or to holiday location">Mobile to home or to holiday location</option>
       </select>
     </div>
 
+    <!-- Mobile Location Notice Box -->
+    <div id="mobilePopup" style="display:none; background: #fdf8f5; border: 1px solid #d4a373; border-radius: 6px; padding: 15px; margin-bottom: 20px; text-align: left;">
+      <h4 style="margin: 0 0 8px 0; color: #8b5e34; font-size: 1rem;">Mobile Service Booking</h4>
+      <p style="margin: 0; font-size: 0.9rem; color: #4a4a4a; line-height: 1.4;">
+        Mobile appointments cannot be booked directly through the online form. Please email us directly at 
+        <a href="mailto:cedarandclovewellness@gmail.com?subject=Mobile%20Booking%20Inquiry" style="color: #a35c58; font-weight: bold; text-decoration: underline;">cedarandclovewellness@gmail.com</a> 
+        with your requested date, address, and desired treatment to arrange your home or holiday visit.
+      </p>
+    </div>
+
     <!-- Main Treatment Dropdown -->
-    <div class="cc-group">
+    <div class="cc-group" id="treatmentGroup">
       <label for="treatment">Main Treatment:</label>
       <select id="treatment" name="treatment" required onchange="calculateTotal()">
         <option value="" disabled selected>Select main treatment...</option>
@@ -589,7 +599,7 @@
     </div>
 
     <!-- 1. Dedicated Facial Add-On Dropdown -->
-    <div class="cc-group">
+    <div class="cc-group" id="facialGroup">
       <label for="facialAddon">Add-On Facial (Optional):</label>
       <select id="facialAddon" name="facialAddon" onchange="calculateTotal()">
         <option value="None|0|0" selected>None</option>
@@ -600,7 +610,7 @@
     </div>
 
     <!-- 2. Treatment Add-On Dropdown (Express / ≤40 mins) -->
-    <div class="cc-group">
+    <div class="cc-group" id="addonGroup">
       <label for="treatmentAddon">Add-On Treatment (Optional):</label>
       <select id="treatmentAddon" name="treatmentAddon" onchange="calculateTotal()">
         <option value="None|0|0" selected>None</option>
@@ -624,7 +634,7 @@
       </select>
     </div>
 
-    <div class="cc-group">
+    <div class="cc-group" id="dateGroup">
       <label>Date</label>
       <input type="date" id="date" onchange="updateAvailableTimes()">
     </div>
@@ -634,9 +644,11 @@
       <select id="time"></select>
     </div>
 
-    <div class="cc-group"><label>Your Full Name</label><input type="text" id="custName" required></div>
-    <div class="cc-group"><label>Email Address</label><input type="email" id="custEmail" required></div>
-    <div class="cc-group"><label>Phone Number</label><input type="tel" id="custPhone" required></div>
+    <div id="contactFields">
+      <div class="cc-group"><label>Your Full Name</label><input type="text" id="custName" required></div>
+      <div class="cc-group"><label>Email Address</label><input type="email" id="custEmail" required></div>
+      <div class="cc-group"><label>Phone Number</label><input type="tel" id="custPhone" required></div>
+    </div>
 
     <!-- Single Unified Total Display -->
     <div class="cc-total" id="displayTotal">Total: £0</div>
@@ -709,22 +721,31 @@
     const locElem = document.getElementById('location');
     const loc = locElem ? locElem.value : '';
     const mobilePopup = document.getElementById('mobilePopup');
-    const timeGroup = document.getElementById('timeGroup');
-    const submitBtn = document.getElementById('submitBtn');
-    const facilityGroup = document.getElementById('facilityGroup');
-    const facilitySelect = document.getElementById('facilityAddon');
+    
+    // Form elements to show/hide
+    const fieldsToToggle = [
+      'treatmentGroup', 'facialGroup', 'addonGroup', 
+      'facilityGroup', 'dateGroup', 'timeGroup', 
+      'contactFields', 'displayTotal', 'submitBtn'
+    ];
 
-    if (loc === 'Mobile Visit' || loc === 'Mobile Visit (Client Home)') {
+    if (loc === 'Mobile to home or to holiday location' || loc === 'Mobile Visit') {
       if (mobilePopup) mobilePopup.style.display = 'block';
-      if (timeGroup) timeGroup.style.display = 'none';
-      if (submitBtn) submitBtn.style.display = 'none';
-      if (facilityGroup) facilityGroup.style.display = 'none';
+      
+      fieldsToToggle.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+      });
+
+      const facilitySelect = document.getElementById('facilityAddon');
       if (facilitySelect) facilitySelect.value = 'None|0|0';
     } else {
       if (mobilePopup) mobilePopup.style.display = 'none';
-      if (timeGroup) timeGroup.style.display = 'block';
-      if (submitBtn) submitBtn.style.display = 'block';
-      if (facilityGroup) facilityGroup.style.display = 'block';
+      
+      fieldsToToggle.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'block';
+      });
 
       if (typeof updateAvailableTimes === 'function') {
         updateAvailableTimes();
