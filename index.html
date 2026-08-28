@@ -544,72 +544,87 @@
           <h2>Book Your Session</h2>
           <div id="bookingFields">
 
-            <div class="cc-group">
-              <label>Location</label>
-              <select id="location" onchange="handleLocationChange()">
-                <option value="Studio">In-Studio Treatment</option>
-                <option value="Mobile Treatment">Mobile Treatment</option>
-              </select>
-            </div>
-
-            <!-- Hidden popup info for mobile inquiries -->
-            <div id="mobilePopup" style="display:none; background:#fdf8f5; border:1px solid #e5ded8; padding:15px; border-radius:8px; margin-bottom:15px;">
-              <p style="margin:0; font-size:0.9rem; color:#606660;">
-                For mobile or on-site bookings, please contact us directly by email so we can verify travel coverage and scheduling for your location.
-              </p>
-            </div>
-
-            <div class="cc-group">
-              <label>Select Treatment</label>
-              <select id="treatment" onchange="calculateTotal()">
-                <option value="Swedish|50|65">Swedish Massage (50 mins) - £65</option>
-                <option value="Stretch & Recover|70|80">Stretch & Recover Massage (70 mins) - £80</option>
-                <option value="Relax & Drain|50|65">Relax & Drain Massage (50 mins) - £65</option>
-                <option value="Hot Stone|50|70">Hot Stone Experience (50 mins) - £70</option>
-                <option value="Fire & Ice|50|70">Fire & Ice: Hot and Cold Stone Massage (50 mins) - £70</option>
-                <option value="Ultimate Ritual|70|85">The Ultimate Ritual: Full Body & Indian Head (70 mins) - £85</option>
-                <option value="Sea Salt Renewal|70|80">Sea Salt Renewal Scrub & Massage (70 mins) - £80</option>
-                <option value="Blend & Body|50|75">The Blend & Body Massage (50 mins) - £75</option>
-                <option value="Personalised 50|50|70">Personalised Holistic Massage (50 mins) - £70</option>
-                <option value="Personalised 80|80|95">Personalised Holistic Massage (80 mins) - £95</option>
-                <option value="Seated Indian Head|30|40">Seated Indian Head Massage (30 mins) - £40</option>
-                <option value="Ergonomic Chair|20|30">On-Site Ergonomic Chair Massage (20 mins) - £30</option>
-                <option value="Luxury Facial|25|35">Luxury Bespoke Aromatherapy Facial (25 mins) - £35</option>
-                <option value="Oat Scrub Facial|25|35">Oat Scrub & Drain Facial (25 mins) - £35</option>
-                <option value="Extended Facial|50|60">Extended Facial and Upper Body Massage (50 mins) - £60</option>
-                <option value="Abdominal Detox|30|35">Abdominal Detox & Drain (30 mins) - £35</option>
-                <option value="Botanical Scalp|30|40">Botanical Hair Mask & Scalp Ritual (30 mins) - £40</option>
-                <option value="Foot Massage|25|30">Focused Foot Massage (25 mins) - £30</option>
-                <option value="Heavy Legs|50|60">Heavy Legs: Foot & Leg Massage (50 mins) - £60</option>
-                <option value="Reflexology|50|60">Holistic Reflexology (50 mins) - £60</option>
-              </select>
-            </div>
-
-            <div class="cc-group">
-              <label>Add-on Facial (Optional)</label>
-              <select id="addon" onchange="calculateTotal()">
-                <option value="None|0|0">None (£0)</option>
-                <option value="Warm & Cool Stone Facial|15|15">15-min Warm & Cool Stone Facial (£15)</option>
-                <option value="Ultimate Add-On Facial|15|15">15-min Ultimate Add-On Facial (£15)</option>
-                <option value="Bespoke Aromatherapy Facial|15|20">15-min Bespoke Aromatherapy Facial (£20)</option>
-              </select>
-            </div>
-
-              <!-- Additional Treatment / Facilities Dropdown -->
-<div class="form-group" style="margin-bottom: 20px;">
-  <label for="extraTreatment" style="display: block; font-weight: 600; margin-bottom: 5px;">Additional Treatment or Spa Pass</label>
-  <select id="extraTreatment" onchange="calculateTotal(); updateAvailableTimes();" style="width: 100%; padding: 10px; border: 1px solid #e5ded8; border-radius: 6px;">
-    <option value="None|0|0">None (£0)</option>
-    
-    <!-- Spa & Gym Passes (0 duration added so appointment length doesn't stretch) -->
-    <option value="Silverwood Spa Pass|0|10">Silverwood Spa Pass (£10)</option>
-    <option value="Silverwood Spa & Gym Pass|0|16">Silverwood Spa & Gym Pass (£16)</option>
-
-    <!-- Additional Treatments (Format: Name | Duration in Mins | Price in £) -->
-    <option value="Express Head & Shoulder Massage|20|25">Express Head & Shoulder Massage (20 mins - £25)</option>
-    <option value="Hand & Foot Reflex Reset|30|35">Hand & Foot Reflex Reset (30 mins - £35)</option>
+          <!-- Location Dropdown -->
+<div class="cc-group">
+  <label for="location">Location:</label>
+  <select id="location" name="location" required onchange="handleLocationChange()">
+    <option value="" disabled selected>Select location...</option>
+    <option value="Silverwood Spa Room">Silverwood Spa Room</option>
+    <option value="Mobile Visit">Mobile Visit (Client Home)</option>
   </select>
 </div>
+
+<!-- Main Treatment Dropdown -->
+<div class="cc-group">
+  <label for="treatment">Main Treatment:</label>
+  <select id="treatment" name="treatment" required onchange="calculateTotal()">
+    <option value="" disabled selected>Select main treatment...</option>
+    <!-- Massages & Luxury -->
+    <option value="Swedish Massage|50|65">Swedish Massage (50 mins - £65)</option>
+    <option value="Stretch & Recover Massage|70|80">Stretch & Recover Massage (70 mins - £80)</option>
+    <option value="Relax & Drain Massage|50|65">Relax & Drain Massage (50 mins - £65)</option>
+    <option value="Hot Stone Experience|50|70">Hot Stone Experience (50 mins - £70)</option>
+    <option value="Fire & Ice Massage|50|70">Fire & Ice: Hot & Cold Stone (50 mins - £70)</option>
+    <option value="The Ultimate Ritual|70|85">The Ultimate Ritual (70 mins - £85)</option>
+    <option value="Sea Salt Renewal Scrub & Massage|70|80">Sea Salt Renewal Scrub & Massage (70 mins - £80)</option>
+    <option value="The Blend & Body Massage|50|75">The Blend & Body Massage (50 mins - £75)</option>
+    <option value="Personalised Holistic Massage (50 mins)|50|70">Personalised Holistic Massage (50 mins - £70)</option>
+    <option value="Personalised Holistic Massage (80 mins)|80|95">Personalised Holistic Massage (80 mins - £95)</option>
+    
+    <!-- Seated & Facials -->
+    <option value="Seated Indian Head Massage|30|40">Seated Indian Head Massage (30 mins - £40)</option>
+    <option value="On-Site Ergonomic Chair Massage|20|30">On-Site Ergonomic Chair Massage (20 mins - £30)</option>
+    <option value="Luxury Bespoke Aromatherapy Facial|25|35">Luxury Bespoke Aromatherapy Facial (25 mins - £35)</option>
+    <option value="Oat Scrub & Drain Facial|25|35">Oat Scrub & Drain Facial (25 mins - £35)</option>
+    <option value="Extended Facial and Upper Body Massage|50|60">Extended Facial & Upper Body Massage (50 mins - £60)</option>
+    
+    <!-- Focused & Feet -->
+    <option value="Abdominal Detox & Drain|30|35">Abdominal Detox & Drain (30 mins - £35)</option>
+    <option value="Botanical Hair Mask & Scalp Ritual|30|40">Botanical Hair Mask & Scalp Ritual (30 mins - £40)</option>
+    <option value="Focused Foot Massage|25|30">Focused Foot Massage (25 mins - £30)</option>
+    <option value="Heavy Legs: Foot & Leg Massage|50|60">Heavy Legs: Foot & Leg Massage (50 mins - £60)</option>
+    <option value="Holistic Reflexology (25 mins)|25|30">Holistic Reflexology (25 mins - £30)</option>
+    <option value="Holistic Reflexology (50 mins)|50|60">Holistic Reflexology (50 mins - £60)</option>
+  </select>
+</div>
+
+<!-- 1. Dedicated Facial Add-On Dropdown -->
+<div class="cc-group">
+  <label for="facialAddon">Add-On Facial (Optional):</label>
+  <select id="facialAddon" name="facialAddon" onchange="calculateTotal()">
+    <option value="None|0|0" selected>None</option>
+    <option value="The Ultimate Add-On Facial|15|15">The Ultimate Add-On Facial (15 mins - £15)</option>
+    <option value="Hot/Cool Stone Facial Upgrade|15|15">Stone Facial Upgrade - Hot & Cool Stones (15 mins - £15)</option>
+    <option value="Bespoke Aromatherapy Facial Upgrade|15|20">Bespoke Aromatherapy Facial Upgrade (15 mins - £20)</option>
+  </select>
+</div>
+
+<!-- 2. Treatment Add-On Dropdown (Express / ≤40 mins) -->
+<div class="cc-group">
+  <label for="treatmentAddon">Add-On Treatment (Optional):</label>
+  <select id="treatmentAddon" name="treatmentAddon" onchange="calculateTotal()">
+    <option value="None|0|0" selected>None</option>
+    <option value="On-Site Ergonomic Chair Massage|20|30">On-Site Ergonomic Chair Massage (20 mins - £30)</option>
+    <option value="Focused Foot Massage|25|30">Focused Foot Massage (25 mins - £30)</option>
+    <option value="Holistic Reflexology Express|25|30">Holistic Reflexology Express (25 mins - £30)</option>
+    <option value="Luxury Bespoke Aromatherapy Facial|25|35">Luxury Bespoke Aromatherapy Facial (25 mins - £35)</option>
+    <option value="Oat Scrub & Drain Facial|25|35">Oat Scrub & Drain Facial (25 mins - £35)</option>
+    <option value="Abdominal Detox & Drain|30|35">Abdominal Detox & Drain (30 mins - £35)</option>
+    <option value="Botanical Hair Mask & Scalp Ritual|30|30">Botanical Hair Mask & Scalp Ritual (30 mins - £30 add-on price)</option>
+    <option value="Seated Indian Head Massage|30|40">Seated Indian Head Massage (30 mins - £40)</option>
+  </select>
+</div>
+
+<!-- 3. Facility Use Dropdown -->
+<div class="cc-group" id="facilityGroup">
+  <label for="facilityAddon">Facility Use (Optional):</label>
+  <select id="facilityAddon" name="facilityAddon" onchange="calculateTotal()">
+    <option value="None|0|0" selected>None</option>
+    <option value="Silverwood Spa Pass (60 mins)|0|10">Silverwood Spa Pass (+£10)</option>
+  </select>
+</div>
+
+<div class="cc-total" id="displayTotal">Total: £0</div>
 
             <div class="cc-group">
               <label>Date</label>
@@ -657,37 +672,74 @@
   if (dateInput) dateInput.setAttribute('min', today);
 
  function calculateTotal() {
-  const tVal = document.getElementById('treatment').value.split('|');
-  const aVal = document.getElementById('addon').value.split('|');
-  
-  // Read extra treatment/spa pass dropdown (with fallback if empty)
-  const extraElem = document.getElementById('extraTreatment');
-  const eVal = extraElem ? extraElem.value.split('|') : ['None', '0', '0'];
+  // Safely get drop-down values or fall back to 'None|0|0' if missing/unselected
+  const tElem = document.getElementById('treatment');
+  const tVal = (tElem && tElem.value) ? tElem.value.split('|') : ['None', '0', '0'];
 
-  const totalPrice = parseInt(tVal[2], 10) + parseInt(aVal[2], 10) + parseInt(eVal[2], 10);
-  const totalDuration = parseInt(tVal[1], 10) + parseInt(aVal[1], 10) + parseInt(eVal[1], 10);
+  const facialElem = document.getElementById('facialAddon') || document.getElementById('addon');
+  const fVal = (facialElem && facialElem.value) ? facialElem.value.split('|') : ['None', '0', '0'];
 
-  document.getElementById('totalDisplay').innerText = 'Total: £' + totalPrice;
+  const treatAddonElem = document.getElementById('treatmentAddon') || document.getElementById('extraTreatment');
+  const trVal = (treatAddonElem && treatAddonElem.value) ? treatAddonElem.value.split('|') : ['None', '0', '0'];
+
+  const facilityElem = document.getElementById('facilityAddon');
+  const facVal = (facilityElem && facilityElem.value) ? facilityElem.value.split('|') : ['None', '0', '0'];
+
+  // Calculate totals
+  const totalPrice = 
+    (parseFloat(tVal[2]) || 0) + 
+    (parseFloat(fVal[2]) || 0) + 
+    (parseFloat(trVal[2]) || 0) + 
+    (parseFloat(facVal[2]) || 0);
+
+  const totalDuration = 
+    (parseInt(tVal[1], 10) || 0) + 
+    (parseInt(fVal[1], 10) || 0) + 
+    (parseInt(trVal[1], 10) || 0) + 
+    (parseInt(facVal[1], 10) || 0);
+
+  // Update total display (supports both 'totalDisplay' and 'displayTotal' IDs)
+  const displayElem = document.getElementById('totalDisplay') || document.getElementById('displayTotal');
+  if (displayElem) {
+    displayElem.innerText = 'Total: £' + totalPrice;
+  }
+
+  // Preserves your original return object key names: { price, duration }
   return { price: totalPrice, duration: totalDuration };
 }
 
-  function handleLocationChange() {
-    const loc = document.getElementById('location').value;
-    const mobilePopup = document.getElementById('mobilePopup');
-    const timeGroup = document.getElementById('timeGroup');
-    const submitBtn = document.getElementById('submitBtn');
+function handleLocationChange() {
+  const locElem = document.getElementById('location');
+  const loc = locElem ? locElem.value : '';
+  const mobilePopup = document.getElementById('mobilePopup');
+  const timeGroup = document.getElementById('timeGroup');
+  const submitBtn = document.getElementById('submitBtn');
+  const facilityGroup = document.getElementById('facilityGroup');
+  const facilitySelect = document.getElementById('facilityAddon');
 
-    if (loc === 'Mobile Treatment') {
-      if (mobilePopup) mobilePopup.style.display = 'block';
-      if (timeGroup) timeGroup.style.display = 'none';
-      if (submitBtn) submitBtn.style.display = 'none';
-    } else {
-      if (mobilePopup) mobilePopup.style.display = 'none';
-      if (timeGroup) timeGroup.style.display = 'block';
-      if (submitBtn) submitBtn.style.display = 'block';
+  if (loc === 'Mobile Treatment' || loc === 'Mobile Visit (Client Home)') {
+    if (mobilePopup) mobilePopup.style.display = 'block';
+    if (timeGroup) timeGroup.style.display = 'none';
+    if (submitBtn) submitBtn.style.display = 'none';
+    
+    // Hide facility pass and reset selection for mobile
+    if (facilityGroup) facilityGroup.style.display = 'none';
+    if (facilitySelect) facilitySelect.value = 'None|0|0';
+  } else {
+    if (mobilePopup) mobilePopup.style.display = 'none';
+    if (timeGroup) timeGroup.style.display = 'block';
+    if (submitBtn) submitBtn.style.display = 'block';
+    
+    // Show facility pass option for spa room
+    if (facilityGroup) facilityGroup.style.display = 'block';
+
+    if (typeof updateAvailableTimes === 'function') {
       updateAvailableTimes();
     }
   }
+
+  calculateTotal();
+}
 
   async function updateAvailableTimes() {
     const selectedDateStr = document.getElementById('date').value;
