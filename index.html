@@ -804,7 +804,8 @@ async function updateAvailableTimes() {
 
     let busySlots = [];
     try {
-      const resp = await fetch(SCRIPT_URL + "?date=" + selectedDateStr);
+      // Added &_ = Date.now() to disable browser caching on calendar fetches
+      const resp = await fetch(SCRIPT_URL + "?date=" + selectedDateStr + "&_=" + Date.now());
       const data = await resp.json();
       if (data.busySlots) {
         busySlots = data.busySlots;
@@ -827,17 +828,26 @@ async function updateAvailableTimes() {
     let startMin = 9 * 60;
     let endMin = maxHour * 60;
     let availableCount = 0;
+    const totalBlockMinutes = duration + 20; // Treatment length + 20-min turnaround
 
     for (let time = startMin; time < endMin; time += 5) {
-      if (time + duration + 20 <= endMin) {
+      if (time + totalBlockMinutes <= endMin) {
         let startHour = Math.floor(time / 60);
         let startMinute = time % 60;
         
-        let slotStart = new Date(year, month, dayNum, startHour, startMinute, 0).getTime();
-        let slotEnd = slotStart + ((duration + 20) * 60000);
+        // Exact start time in milliseconds (0s, 0ms)
+        let slotStart = new Date(year, month, dayNum, startHour, startMinute, 0, 0).getTime();
+        let slotEnd = slotStart + (totalBlockMinutes * 60000);
 
         let hasConflict = busySlots.some(b => {
-          return (slotStart < b.end && slotEnd > b.start);
+          if (b.isAllDay) return true;
+          
+          // Ensure b.start and b.end are strictly parsed as numeric timestamps
+          let bStart = Number(b.start);
+          let bEnd = Number(b.end);
+
+          // Returns true if slot overlaps any existing event range
+          return (slotStart < bEnd && slotEnd > bStart);
         });
 
         if (!hasConflict) {
@@ -860,7 +870,7 @@ async function updateAvailableTimes() {
       option.innerText = "Fully Booked / Unavailable";
       timeSelect.appendChild(option);
     }
-  }
+}
 
   function submitBooking() {
     const name = document.getElementById('custName').value.trim();
