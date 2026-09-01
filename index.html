@@ -755,134 +755,45 @@
     calculateTotal();
   }
 
-
 async function updateAvailableTimes() {
-    const selectedDateStr = document.getElementById('date').value;
-    if (!selectedDateStr) return;
+    const selectedDateStr = document.getElementById('date').value;
+    if (!selectedDateStr) return;
 
-    const timeSelect = document.getElementById('time');
-    timeSelect.innerHTML = '<option value="">Checking availability...</option>';
+    const timeSelect = document.getElementById('time');
+    timeSelect.innerHTML = '<option value="">Checking availability...</option>';
 
-    // Parse selected date
-    const parts = selectedDateStr.split('-');
-    const year = parseInt(parts[0], 10);
-    const month = parseInt(parts[1], 10) - 1;
-    const dayNum = parseInt(parts[2], 10);
-    const selectedDate = new Date(year, month, dayNum);
+    // Parse selected date
+    const parts = selectedDateStr.split('-');
+    const year = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1;
+    const dayNum = parseInt(parts[2], 10);
+    const selectedDate = new Date(year, month, dayNum);
 
-    if (isNaN(selectedDate.getTime())) return;
+    if (isNaN(selectedDate.getTime())) return;
 
-    // --- 4:00 PM CUTOFF FOR NEXT-DAY BOOKINGS ---
-    const now = new Date();
-    const currentHour = now.getHours();
+    // --- 4:00 PM CUTOFF FOR NEXT-DAY BOOKINGS ---
+    const now = new Date();
+    const currentHour = now.getHours();
 
-    // Calculate tomorrow's date (at midnight for clean comparison)
-    const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+    // Calculate tomorrow's date (at midnight for clean comparison)
+    const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
 
-    const isTomorrow = (
-      selectedDate.getFullYear() === tomorrow.getFullYear() &&
-      selectedDate.getMonth() === tomorrow.getMonth() &&
-      selectedDate.getDate() === tomorrow.getDate()
-    );
+    const isTomorrow = (
+      selectedDate.getFullYear() === tomorrow.getFullYear() &&
+      selectedDate.getMonth() === tomorrow.getMonth() &&
+      selectedDate.getDate() === tomorrow.getDate()
+    );
 
-    // If selected date is tomorrow and it's 4:00 PM (16:00) or later today:
-    if (isTomorrow && currentHour >= 16) {
-      timeSelect.innerHTML = '';
-      let option = document.createElement('option');
-      option.value = "";
-      option.innerText = "Next-day online booking closes at 4:00 PM. Please email to enquire.";
-      timeSelect.appendChild(option);
-      return;
-    }
-    // --------------------------------------------#
-
-  // Fetch treatment duration (default to 50 mins if not selected yet)
-  const treatmentDuration = parseInt(document.getElementById('treatment-duration')?.value || 50, 10);
-  const bufferMs = 20 * 60 * 1000; // 20-min buffer between appointments
-  const totalBlockMs = (treatmentDuration * 60 * 1000) + bufferMs;
-
-  // Determine working hours (Sun = Closed, Sat = 9am-1pm, Mon-Fri = 9am-3pm)
-  const dayOfWeek = selectedDate.getDay();
-  if (dayOfWeek === 0) {
-    timeSelect.innerHTML = '<option value="">Closed on Sundays</option>';
-    return;
-  }
-  let maxHour = (dayOfWeek === 6) ? 13 : 15; // 1 PM on Saturday, 3 PM on Weekdays
-
-  let busySlots = [];
-  try {
-    const resp = await fetch(SCRIPT_URL + "?date=" + selectedDateStr + "&_=" + Date.now());
-    const data = await resp.json();
-    if (data.busySlots) {
-      busySlots = data.busySlots;
+    // If selected date is tomorrow and it's 4:00 PM (16:00) or later today:
+    if (isTomorrow && currentHour >= 16) {
+      timeSelect.innerHTML = '';
+      let option = document.createElement('option');
+      option.value = "";
+      option.innerText = "Next-day online booking closes at 4:00 PM. Please email to enquire.";
+      timeSelect.appendChild(option);
+      return;
     }
-    console.log("Fetched Busy Slots from Google Calendar:", busySlots);
-  } catch (e) {
-    console.log("Could not fetch calendar availability:", e);
-  }
-
-  // Check if any event is flagged as true All-Day
-  const isAllDayBlocked = busySlots.some(s => s.isAllDay);
-  timeSelect.innerHTML = '';
-
-  if (isAllDayBlocked) {
-    let option = document.createElement('option');
-    option.value = "";
-    option.innerText = "Fully Booked / Unavailable";
-    timeSelect.appendChild(option);
-    return;
-  }
-
-  const startMin = 9 * 60;     // 09:00 AM
-  const endMin = maxHour * 60; // 15:00 (3:00 PM) or 13:00 (1:00 PM)
-  let availableCount = 0;
-
-  // Step through time in 15-minute intervals
-  for (let time = startMin; time < endMin; time += 15) {
-    // Ensure the treatment + 20min buffer completes before closing time (15:00)
-    if (time + treatmentDuration + 20 <= endMin) {
-      let startHour = Math.floor(time / 60);
-      let startMinute = time % 60;
-
-      let slotStart = new Date(year, month, dayNum, startHour, startMinute, 0, 0).getTime();
-      let slotEnd = slotStart + totalBlockMs;
-
-      // Overlap check against Google Calendar events
-      let hasConflict = busySlots.some(b => {
-        if (b.isAllDay) return true;
-
-        let bStart = Number(b.start);
-        let bEnd = Number(b.end);
-
-        // A conflict exists if slot starts BEFORE existing event ends (+ 20m buffer)
-        // AND slot ends AFTER existing event starts
-        // We add 20 mins to bEnd so you have 20 mins after an existing event finishes!
-        let bEndWithBuffer = bEnd + bufferMs;
-
-        return (slotStart < bEndWithBuffer && slotEnd > bStart);
-      });
-
-      if (!hasConflict) {
-        let hStr = (startHour < 10 ? '0' : '') + startHour;
-        let mStr = (startMinute < 10 ? '0' : '') + startMinute;
-        let timeStr = hStr + ':' + mStr;
-
-        let option = document.createElement('option');
-        option.value = timeStr;
-        option.innerText = timeStr;
-        timeSelect.appendChild(option);
-        availableCount++;
-      }
-    }
-  }
-
-  if (availableCount === 0) {
-    let option = document.createElement('option');
-    option.value = "";
-    option.innerText = "Fully Booked / Unavailable";
-    timeSelect.appendChild(option);
-  }
-}
+    // --------------------------------------------
 
     const dayOfWeek = selectedDate.getDay();
     const isWeekend = (dayOfWeek === 0 || dayOfWeek === 6);
