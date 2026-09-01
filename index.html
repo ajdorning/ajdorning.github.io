@@ -754,45 +754,47 @@
 
     calculateTotal();
   }
+
+
 async function updateAvailableTimes() {
-  const selectedDateStr = document.getElementById('date').value;
-  if (!selectedDateStr) return;
+    const selectedDateStr = document.getElementById('date').value;
+    if (!selectedDateStr) return;
 
-  const timeSelect = document.getElementById('time');
-  timeSelect.innerHTML = '<option value="">Checking availability...</option>';
+    const timeSelect = document.getElementById('time');
+    timeSelect.innerHTML = '<option value="">Checking availability...</option>';
 
-  // Parse selected date
-  const parts = selectedDateStr.split('-');
-  const year = parseInt(parts[0], 10);
-  const month = parseInt(parts[1], 10) - 1;
-  const dayNum = parseInt(parts[2], 10);
-  const selectedDate = new Date(year, month, dayNum);
+    // Parse selected date
+    const parts = selectedDateStr.split('-');
+    const year = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1;
+    const dayNum = parseInt(parts[2], 10);
+    const selectedDate = new Date(year, month, dayNum);
 
-  if (isNaN(selectedDate.getTime())) return;
+    if (isNaN(selectedDate.getTime())) return;
 
-  // --- 4:00 PM CUTOFF FOR NEXT-DAY BOOKINGS ---
-  const now = new Date();
-  const currentHour = now.getHours();
+    // --- 4:00 PM CUTOFF FOR NEXT-DAY BOOKINGS ---
+    const now = new Date();
+    const currentHour = now.getHours();
 
-  // Calculate tomorrow's date (at midnight for clean comparison)
-  const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+    // Calculate tomorrow's date (at midnight for clean comparison)
+    const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
 
-  const isTomorrow = (
-    selectedDate.getFullYear() === tomorrow.getFullYear() &&
-    selectedDate.getMonth() === tomorrow.getMonth() &&
-    selectedDate.getDate() === tomorrow.getDate()
-  );
+    const isTomorrow = (
+      selectedDate.getFullYear() === tomorrow.getFullYear() &&
+      selectedDate.getMonth() === tomorrow.getMonth() &&
+      selectedDate.getDate() === tomorrow.getDate()
+    );
 
-  // If selected date is tomorrow and it's 4:00 PM (16:00) or later today:
-  if (isTomorrow && currentHour >= 16) {
-    timeSelect.innerHTML = '';
-    let option = document.createElement('option');
-    option.value = "";
-    option.innerText = "Next-day online booking closes at 4:00 PM. Please email to enquire.";
-    timeSelect.appendChild(option);
-    return;
-  }
-  // --------------------------------------------
+    // If selected date is tomorrow and it's 4:00 PM (16:00) or later today:
+    if (isTomorrow && currentHour >= 16) {
+      timeSelect.innerHTML = '';
+      let option = document.createElement('option');
+      option.value = "";
+      option.innerText = "Next-day online booking closes at 4:00 PM. Please email to enquire.";
+      timeSelect.appendChild(option);
+      return;
+    }
+    // --------------------------------------------#
 
   // Fetch treatment duration (default to 50 mins if not selected yet)
   const treatmentDuration = parseInt(document.getElementById('treatment-duration')?.value || 50, 10);
