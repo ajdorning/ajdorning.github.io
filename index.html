@@ -6,199 +6,205 @@
     <title>Cedar & Clove</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com"> 
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;600&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;600&display=swap" rel="stylesheet"> 
  
-<style> 
-    .cc-booking-card {
-    max-width: 580px;
-    margin: 20px auto;
-    padding: 30px;
-    background: #fdfbf7;
-    border: 1px solid #dcd3c7;
-    border-radius: 8px;
-    font-family: 'Montserrat', sans-serif;
-    color: #333;
-  }
-  .cc-booking-card h2 {
-    font-family: 'Cormorant Garamond', serif;
-    color: #4e1a17;
-    text-align: center;
-    margin-bottom: 24px;
-  }
-  .cc-group { margin-bottom: 18px; }
-  .cc-group label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 14px; }
-  .cc-group select, .cc-group input {
-    width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;
-  }
-  .cc-popup {
-    background: #fbf3d5; border: 1px solid #e0be68; padding: 15px; border-radius: 6px;
-    color: #634a00; font-size: 14px; margin-top: 10px; display: none;
-  }
-  .cc-total {
-    font-size: 18px; font-weight: bold; color: #4e1a17; text-align: right; margin: 20px 0;
-  }
-  .cc-btn {
-    width: 100%; background: #4e1a17; color: white; border: none; padding: 14px;
-    font-size: 16px; border-radius: 4px; cursor: pointer; transition: background 0.2s;
-  }
-  .cc-btn:hover { background: #6a2521; }
-  .cc-success-box {
-    display: none; background: #eaf4ed; border: 1px solid #94c8a0; padding: 20px;
-    border-radius: 6px; text-align: center; line-height: 1.6;
-  }
-    * { box-sizing: border-box; margin: 0; padding: 0; } 
-    body {  
-        font-family: 'Montserrat', sans-serif;  
-        line-height: 1.6;  
-        color: #2c302c;  
-        background-color: #efeae6;  
-    } 
-     
-    /* HEADER BLOCK */ 
-    .brand-header-block { 
-        background-color: #efeae6; 
-        text-align: center; 
-        padding: 40px 20px 30px 20px; 
-    } 
- 
-    .brand-logo { 
-        display: block; 
-        max-width: 250px;  
-        width: 100%; 
-        height: auto; 
-        margin: 0 auto 15px auto; 
-    } 
- 
-    .business-title { 
-        font-family: 'Cormorant Garamond', serif; 
-        font-size: 2.8rem; 
-        font-weight: 400; 
-        color: #4a1c19;  
-        letter-spacing: 0.5px; 
-        margin-bottom: 5px; 
-    } 
- 
-    /* NAVIGATION BAR */ 
-    nav {  
-        background: #ffffff;  
-        padding: 18px 20px;  
-        text-align: center;  
-        border-top: 1px solid #dcd5cf; 
-        border-bottom: 1px solid #dcd5cf;  
-        position: sticky;  
-        top: 0;  
-        z-index: 100;  
-    } 
-    nav a {  
-        margin: 0 12px;  
-        text-decoration: none;  
-        color: #4a504a;  
-        font-weight: 600;  
-        text-transform: uppercase;  
-        font-size: 0.8rem;  
-        letter-spacing: 1.5px;  
-    } 
-    nav a:hover { color: #a35c58; } 
- 
-    /* Page Layout Containers */ 
-    .container { max-width: 800px; margin: 50px auto; padding: 0 20px; } 
-    section { margin-bottom: 70px; scroll-margin-top: 120px; } 
-     
-    h2 {  
-        font-family: 'Cormorant Garamond', serif; 
-        font-size: 2.2rem; 
-        color: #161a16;  
-        margin-bottom: 10px; 
-        font-weight: 400;  
-        letter-spacing: 1px;  
-        margin-top: 20px; 
-    } 
-     
-    .section-subtitle { 
-        font-size: 0.9rem; 
-        text-transform: uppercase; 
-        letter-spacing: 2px; 
-        color: #a35c58; 
-        margin-bottom: 30px; 
-        font-weight: 600; 
-    } 
- 
-    .timing-note { 
-        font-style: italic; 
-        font-size: 0.9rem; 
-        color: #606660; 
-        margin-bottom: 25px; 
-        display: block; 
-    } 
- 
-    /* TREATMENT SUB-TABS INTERFACE */ 
-    .tab-container { 
-        display: flex; 
-        flex-wrap: wrap; 
-        gap: 8px; 
-        margin-bottom: 30px; 
-        border-bottom: 1px solid #dcd5cf; 
-        padding-bottom: 15px; 
-    } 
-    .tab-btn { 
-        background: #ffffff; 
-        border: 1px solid #e5ded8; 
-        color: #4a504a; 
-        padding: 10px 16px; 
-        font-size: 0.75rem; 
-        font-weight: 600; 
-        text-transform: uppercase; 
-        letter-spacing: 1px; 
-        border-radius: 20px; 
-        cursor: pointer; 
-        transition: all 0.2s ease; 
-    } 
-    .tab-btn:hover { 
-        border-color: #a35c58; 
-        color: #a35c58; 
-    } 
-    .tab-btn.active { 
-        background: #a35c58; 
-        border-color: #a35c58; 
-        color: #ffffff; 
-    } 
-    .tab-content { 
-        display: none; 
-    } 
-    .tab-content.active { 
-        display: block; 
-    } 
- 
-    /* Menu Grid Arrangements */ 
-    .menu-grid { display: grid; grid-template-columns: 1fr; gap: 25px; margin-bottom: 50px; } 
-    .menu-card { background: #fff; border: 1px solid #e5ded8; border-radius: 12px; overflow: hidden; display: flex; flex-wrap: wrap; box-shadow: 0 4px 15px rgba(0,0,0,0.02); } 
-    .menu-img { width: 180px; height: auto; min-height: 180px; object-fit: cover; flex: 1; min-width: 150px; } 
-    .menu-info { padding: 25px; flex: 2; min-width: 280px; } 
-     
-    .menu-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; gap: 10px; } 
-    .menu-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: bold; color: #161a16; } 
-    .menu-price { font-weight: bold; color: #a35c58; font-size: 1.1rem; white-space: nowrap; } 
-    .menu-desc { font-size: 0.9rem; color: #606660; } 
-    .menu-upgrade { font-size: 0.85rem; color: #a35c58; font-style: italic; margin-top: 10px; font-weight: 600; } 
- 
-    /* Placeholder block styles */ 
-    .placeholder-widget { background: #fff; border: 1px solid #e5ded8; border-radius: 12px; padding: 40px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.02); color: #606660; } 
-     
-    footer { text-align: center; padding: 40px; font-size: 0.85em; color: #888; background: #fff; border-top: 1px solid #e5ded8; margin-top: 120px; } 
-/* Fix long prices cutting off on mobile screens */ 
-    @media (max-width: 480px) { 
-        .menu-header { 
-            flex-direction: column !important; 
-            align-items: flex-start !important; 
-            gap: 4px !important; 
+    <style> 
+        * { box-sizing: border-box; margin: 0; padding: 0; } 
+        body {  
+            font-family: 'Montserrat', sans-serif;  
+            line-height: 1.6;  
+            color: #2c302c;  
+            background-color: #efeae6;  
         } 
-        .menu-price { 
-            text-align: left !important; 
-            margin-top: 2px !important; 
+        
+        /* HEADER BLOCK */ 
+        .brand-header-block { 
+            background-color: #efeae6; 
+            text-align: center; 
+            padding: 40px 20px 30px 20px; 
         } 
-    }     
-</style> 
+     
+        .brand-logo { 
+            display: block; 
+            max-width: 250px;  
+            width: 100%; 
+            height: auto; 
+            margin: 0 auto 15px auto; 
+        } 
+     
+        .business-title { 
+            font-family: 'Cormorant Garamond', serif; 
+            font-size: 2.8rem; 
+            font-weight: 400; 
+            color: #4a1c19;  
+            letter-spacing: 0.5px; 
+            margin-bottom: 5px; 
+        } 
+     
+        /* NAVIGATION BAR */ 
+        nav {  
+            background: #ffffff;  
+            padding: 18px 20px;  
+            text-align: center;  
+            border-top: 1px solid #dcd5cf; 
+            border-bottom: 1px solid #dcd5cf;  
+            position: sticky;  
+            top: 0;  
+            z-index: 100;  
+        } 
+        nav a {  
+            margin: 0 10px;  
+            text-decoration: none;  
+            color: #4a504a;  
+            font-weight: 600;  
+            text-transform: uppercase;  
+            font-size: 0.8rem;  
+            letter-spacing: 1.5px;  
+        } 
+        nav a:hover { color: #a35c58; } 
+     
+        /* Page Layout Containers */ 
+        .container { max-width: 800px; margin: 50px auto; padding: 0 20px; } 
+        section { margin-bottom: 70px; scroll-margin-top: 120px; } 
+         
+        h2 {  
+            font-family: 'Cormorant Garamond', serif; 
+            font-size: 2.2rem; 
+            color: #161a16;  
+            margin-bottom: 10px; 
+            font-weight: 400;  
+            letter-spacing: 1px;  
+            margin-top: 20px; 
+        } 
+         
+        .section-subtitle { 
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            color: #a35c58; 
+            margin-bottom: 30px; 
+            font-weight: 600; 
+        } 
+     
+        .timing-note { 
+            font-style: italic; 
+            font-size: 0.9rem; 
+            color: #606660; 
+            margin-bottom: 25px; 
+            display: block; 
+        } 
+     
+        /* TREATMENT SUB-TABS INTERFACE */ 
+        .tab-container { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 8px; 
+            margin-bottom: 30px; 
+            border-bottom: 1px solid #dcd5cf; 
+            padding-bottom: 15px; 
+        } 
+        .tab-btn { 
+            background: #ffffff; 
+            border: 1px solid #e5ded8; 
+            color: #4a504a; 
+            padding: 10px 16px; 
+            font-size: 0.75rem; 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            border-radius: 20px; 
+            cursor: pointer; 
+            transition: all 0.2s ease; 
+        } 
+        .tab-btn:hover { 
+            border-color: #a35c58; 
+            color: #a35c58; 
+        } 
+        .tab-btn.active { 
+            background: #a35c58; 
+            border-color: #a35c58; 
+            color: #ffffff; 
+        } 
+        .tab-content { 
+            display: none; 
+        } 
+        .tab-content.active { 
+            display: block; 
+        } 
+     
+        /* Menu Grid Arrangements */ 
+        .menu-grid { display: grid; grid-template-columns: 1fr; gap: 25px; margin-bottom: 50px; } 
+        .menu-card { background: #fff; border: 1px solid #e5ded8; border-radius: 12px; overflow: hidden; display: flex; flex-wrap: wrap; box-shadow: 0 4px 15px rgba(0,0,0,0.02); } 
+        .menu-img { width: 180px; height: auto; min-height: 180px; object-fit: cover; flex: 1; min-width: 150px; } 
+        .menu-info { padding: 25px; flex: 2; min-width: 280px; } 
+         
+        .menu-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; gap: 10px; } 
+        .menu-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: bold; color: #161a16; } 
+        .menu-price { font-weight: bold; color: #a35c58; font-size: 1.1rem; white-space: nowrap; } 
+        .menu-desc { font-size: 0.9rem; color: #606660; } 
+        .menu-upgrade { font-size: 0.85rem; color: #a35c58; font-style: italic; margin-top: 10px; font-weight: 600; } 
+     
+        /* BOOKING CARD & FORM STYLES */
+        .cc-booking-card {
+            max-width: 580px;
+            margin: 20px auto;
+            padding: 30px;
+            background: #fdfbf7;
+            border: 1px solid #dcd3c7;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+        }
+        .cc-booking-card h2 {
+            font-family: 'Cormorant Garamond', serif;
+            color: #4e1a17;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .cc-group { margin-bottom: 18px; }
+        .cc-group label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 14px; }
+        .cc-group select, .cc-group input {
+            width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;
+        }
+        .cc-popup {
+            background: #fbf3d5; border: 1px solid #e0be68; padding: 15px; border-radius: 6px;
+            color: #634a00; font-size: 14px; margin-top: 10px; display: none;
+        }
+        .cc-total {
+            font-size: 18px; font-weight: bold; color: #4e1a17; text-align: right; margin: 20px 0;
+        }
+        .cc-btn {
+            width: 100%; background: #4e1a17; color: white; border: none; padding: 14px;
+            font-size: 16px; border-radius: 4px; cursor: pointer; transition: background 0.2s;
+        }
+        .cc-btn:hover { background: #6a2521; }
+        .cc-btn:disabled { background: #a58e8c; cursor: not-allowed; }
+        .cc-success-box {
+            display: none; background: #eaf4ed; border: 1px solid #94c8a0; padding: 20px;
+            border-radius: 6px; text-align: center; line-height: 1.6;
+        }
+
+        /* Placeholder block styles */ 
+        .placeholder-widget { background: #fff; border: 1px solid #e5ded8; border-radius: 12px; padding: 40px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.02); color: #606660; } 
+         
+        footer { text-align: center; padding: 40px; font-size: 0.85em; color: #888; background: #fff; border-top: 1px solid #e5ded8; margin-top: 120px; } 
+
+        @media (max-width: 480px) { 
+            .menu-header { 
+                flex-direction: column !important; 
+                align-items: flex-start !important; 
+                gap: 4px !important; 
+            } 
+            .menu-price { 
+                text-align: left !important; 
+                margin-top: 2px !important; 
+            } 
+        }      
+    </style>
+</head>
+<body>
+
 <div class="brand-header-block"> 
     <img class="brand-logo" src="logo.png" alt="Cedar & Clove Wellness Logo"> 
     <h1 class="business-title">Cedar & Clove Wellness</h1> 
@@ -209,6 +215,7 @@
     <a href="#menu">Treatments</a> 
     <a href="#corporate">Corporate</a> 
     <a href="#weddings">Weddings</a> 
+    <a href="#vouchers">Vouchers</a>
     <a href="#locations">Locations</a> 
     <a href="#book" onclick="resetBookingForm()">BOOK</a>
 </nav> 
@@ -445,6 +452,28 @@
                         <p class="menu-desc">A deeply conditioning treatment for the hair and mind. A rich, warm botanical hair mask infused with essential oils is massaged deeply into the scalp and pulled through the hair. Designed to be left in overnight for maximum restoration.</p> 
                     </div> 
                 </div> 
+
+                <div class="menu-card"> 
+                    <img class="menu-img" src="massage.png" alt="Focused Back Massage"> 
+                    <div class="menu-info"> 
+                        <div class="menu-header"> 
+                            <span class="menu-title">Focused Back Massage</span> 
+                            <span class="menu-price">30 mins | £40</span> 
+                        </div> 
+                        <p class="menu-desc">A concentrated massage treatment targeting accumulated stress, knots, and muscular tightness across the lower back, upper back, and shoulders.</p> 
+                    </div> 
+                </div> 
+
+                <div class="menu-card"> 
+                    <img class="menu-img" src="deeparm.png" alt="Hand & Arm Joint Relief"> 
+                    <div class="menu-info"> 
+                        <div class="menu-header"> 
+                            <span class="menu-title">Hand & Arm Joint Relief Massage</span> 
+                            <span class="menu-price">30 mins | £40</span> 
+                        </div> 
+                        <p class="menu-desc">A restorative hand and arm treatment incorporating custom essential oil blends formulated to ease stiffness, soothe joint aches, and improve mobility.</p> 
+                    </div> 
+                </div> 
             </div> 
         </div> 
  
@@ -495,7 +524,7 @@
         </div> 
     </section> 
  
-   <section id="weddings"> 
+    <section id="weddings"> 
         <h2>Bridal & Wedding Wellness</h2> 
         <div class="section-subtitle">Pre-Wedding Rest & Rituals</div> 
  
@@ -517,481 +546,386 @@
             </div> 
         </div> 
     </section> 
+
+    <section id="vouchers"> 
+        <h2>Gift Vouchers</h2> 
+        <div class="section-subtitle">The Gift of Pure Restoration</div> 
+        <div class="placeholder-widget" style="text-align: left; max-width: 650px; margin: 0 auto;"> 
+            <p style="margin-bottom: 15px; font-size: 1.05rem; font-weight: 600; color: #161a16;">Give the perfect gift of deep relaxation and wellness.</p> 
+            <p style="margin-bottom: 15px;">To purchase a voucher, select <strong>'Voucher'</strong> and your chosen treatment in our <a href="#book" style="color: #a35c58; font-weight: 600; text-decoration: underline;">booking section</a>.</p> 
+            <p style="margin-bottom: 15px; font-size: 0.9rem; color: #555;"><em>Please note: Vouchers can be exchanged for treatments of equal value, but change will not be given. Vouchers are valid for up to 1 year from the date of purchase.</em></p> 
+        </div> 
+    </section> 
  
     <section id="locations"> 
         <h2>Our Locations</h2> 
         <div class="section-subtitle">Where to find us</div> 
         <div class="placeholder-widget" style="text-align: left; max-width: 650px; margin: 0 auto;"> 
             <p style="margin-bottom: 20px; font-size: 1.05rem; font-weight: 600; color: #161a16;">Bring the sanctuary to you or get pampered at Silverwood Lodges with added Spa facilities.</p> 
-            <p style="margin-bottom: 20px;">We currently offer our full menu of restorative treatments at Silverwood Lodges, Errol, where you can add on Spa facility use for only £10 or Spa and Gym for £16.  We also operate on a mobile basis to holiday homes throughout the <strong>Carse of Gowrie</strong> and surrounding local areas. To ensure we can accommodate your location, please reach out via email to verify your area prior to scheduling.</p> 
-             <p style="margin-bottom: 20px; color: #444; line-height: 1.6;"> 
-<strong>Mobile Services &amp; Home Visits:</strong> We gladly offer our mobile treatment service to surrounding hotels and holiday lets. To maintain the highest standard of safety for our practitioners, private residential home visits are available exclusively by referral, or may be available following an initial consultation or treatment at one of our dedicated static sites. We reserve the right to decline any booking requests that do not meet these safety criteria. 
-  
-
-           <hr style="border: 0; border-top: 1px solid #e5ded8; margin: 25px 0;"> 
-             
+            <p style="margin-bottom: 20px;">We currently offer our full menu of restorative treatments at Silverwood Lodges, Errol, where you can add on Spa facility use for only £10 or Spa and Gym for £16. We also operate on a mobile basis to holiday homes throughout the <strong>Carse of Gowrie</strong> and surrounding local areas. To ensure we can accommodate your location, please reach out via email to verify your area prior to scheduling.</p> 
+            <p style="margin-bottom: 20px; color: #444; line-height: 1.6;"> 
+                <strong>Mobile Services &amp; Home Visits:</strong> We gladly offer our mobile treatment service for home visits or private accommodations.
+            </p> 
+        </div> 
     </section> 
- 
-<section id="book"> 
-        <h2>Schedule an Appointment</h2> 
-        <div class="section-subtitle">Secure Your Space</div> 
-         
-        <p style="font-size: 1rem; color: #444; max-width: 600px; margin-bottom: 25px;"> 
-            To book at our Silverwood Lodges Treatment Room, please use the below booking form. Please be aware, that to secure your booking, payment must be made via bank transfer within 4 hours of booking (details will follow after booking), or by 4pm the day prior to your booking, whichever is sooner. After this time, your provisional booking will be cancelled if no payment is received. Cancellation is allowed with a full refund via bank transfer (please supply your details when cancelling) up to 24 hours prior to treatment. Late cancellation or no-shows are liable for the full cost of the treatment. In some cases, rearranging the treatment may be possible, please email to discuss. For mobile services, please email cedarandclovewellness@gmail.com
-        </p>
 
-    <form id="ccBookingForm" class="cc-booking-card">
-  <h2>Book Your Session</h2>
-  <div id="bookingFields">
+    <section id="book">
+        <div class="cc-booking-card">
+            <h2>Reserve Your Treatment</h2>
+            
+            <form id="ccBookingForm">
+                <div class="cc-group">
+                    <label for="ccLocation">Location / Service Type *</label>
+                    <select id="ccLocation" required onchange="handleLocationChange()">
+                        <option value="">-- Select Location or Voucher --</option>
+                        <option value="Silverwood">Silverwood Lodges (Errol)</option>
+                        <option value="Mobile">Mobile / Home Visit (Carse of Gowrie)</option>
+                        <option value="Voucher">Voucher Purchase</option>
+                    </select>
+                </div>
 
-    <!-- Location Dropdown -->
-    <div class="cc-group">
-      <label for="location">Location:</label>
-      <select id="location" name="location" required onchange="handleLocationChange()">
-        <option value="" disabled selected>Select location...</option>
-        <option value="Silverwood Spa Room">Silverwood Spa Room</option>
-        <option value="Mobile to home or to holiday location">Mobile to home or to holiday location</option>
-      </select>
-    </div>
+                <div class="cc-group">
+                    <label for="ccTreatment">Treatment *</label>
+                    <select id="ccTreatment" required onchange="calculateTotal()">
+                        <option value="">-- Select Treatment --</option>
+                        <!-- Massages -->
+                        <option value="Swedish Massage" data-price="65" data-duration="50">Swedish Massage (50 mins) - £65</option>
+                        <option value="Stretch & Recover Massage" data-price="80" data-duration="70">Stretch & Recover Massage (70 mins) - £80</option>
+                        <option value="Relax & Drain Massage" data-price="65" data-duration="50">Relax & Drain Massage (50 mins) - £65</option>
+                        <option value="Hot Stone Experience" data-price="70" data-duration="50">Hot Stone Experience (50 mins) - £70</option>
+                        <option value="Fire & Ice Massage" data-price="70" data-duration="50">Fire & Ice: Hot & Cold Stone (50 mins) - £70</option>
+                        <option value="The Ultimate Ritual" data-price="85" data-duration="70">The Ultimate Ritual: Full Body & Head (70 mins) - £85</option>
+                        <!-- Luxury -->
+                        <option value="Sea Salt Renewal Scrub" data-price="80" data-duration="70">Sea Salt Renewal Scrub & Massage (70 mins) - £80</option>
+                        <option value="The Blend & Body Massage" data-price="75" data-duration="70">The Blend & Body Massage (70 mins slot) - £75</option>
+                        <option value="Personalised Holistic Massage 50" data-price="70" data-duration="50">Personalised Holistic Massage (50 mins) - £70</option>
+                        <option value="Personalised Holistic Massage 80" data-price="95" data-duration="80">Personalised Holistic Massage (80 mins) - £95</option>
+                        <!-- Seated -->
+                        <option value="Seated Indian Head Massage" data-price="40" data-duration="30">Seated Indian Head Massage (30 mins) - £40</option>
+                        <option value="On-Site Ergonomic Chair Massage" data-price="30" data-duration="20">On-Site Ergonomic Chair Massage (20 mins) - £30</option>
+                        <!-- Facials -->
+                        <option value="Luxury Bespoke Aromatherapy Facial" data-price="35" data-duration="25">Luxury Bespoke Aromatherapy Facial (25 mins) - £35</option>
+                        <option value="Oat Scrub & Drain Facial" data-price="35" data-duration="25">Oat Scrub & Drain Facial (25 mins) - £35</option>
+                        <option value="Extended Facial & Upper Body Massage" data-price="60" data-duration="50">Extended Facial & Upper Body Massage (50 mins) - £60</option>
+                        <!-- Focused -->
+                        <option value="Abdominal Detox & Drain" data-price="35" data-duration="30">Abdominal Detox & Drain (30 mins) - £35</option>
+                        <option value="Botanical Hair Mask & Scalp Ritual" data-price="40" data-duration="30">Botanical Hair Mask & Scalp Ritual (30 mins) - £40</option>
+                        <option value="Focused Back Massage" data-price="40" data-duration="30">Focused Back Massage (30 mins) - £40</option>
+                        <option value="Hand & Arm Joint Relief Massage" data-price="40" data-duration="30">Hand & Arm Joint Relief Massage (30 mins) - £40</option>
+                        <!-- Foot & Reflexology -->
+                        <option value="Focused Foot Massage" data-price="30" data-duration="25">Focused Foot Massage (25 mins) - £30</option>
+                        <option value="Heavy Legs: Foot & Leg Massage" data-price="60" data-duration="50">Heavy Legs: Foot & Leg Massage (50 mins) - £60</option>
+                        <option value="Holistic Reflexology 25" data-price="30" data-duration="25">Holistic Reflexology (25 mins) - £30</option>
+                        <option value="Holistic Reflexology 50" data-price="60" data-duration="50">Holistic Reflexology (50 mins) - £60</option>
+                    </select>
+                </div>
 
-    <!-- Mobile Location Notice Box -->
-    <div id="mobilePopup" style="display:none; background: #fdf8f5; border: 1px solid #d4a373; border-radius: 6px; padding: 15px; margin-bottom: 20px; text-align: left;">
-      <h4 style="margin: 0 0 8px 0; color: #8b5e34; font-size: 1rem;">Mobile Service Booking</h4>
-      <p style="margin: 0; font-size: 0.9rem; color: #4a4a4a; line-height: 1.4;">
-        Mobile appointments cannot be booked directly through the online form. Please email us directly at 
-        <a href="mailto:cedarandclovewellness@gmail.com?subject=Mobile%20Booking%20Inquiry" style="color: #a35c58; font-weight: bold; text-decoration: underline;">cedarandclovewellness@gmail.com</a> 
-        with your requested date, address, and desired treatment to arrange your home or holiday visit.
-      </p>
-    </div>
+                <div class="cc-group" id="ccAddonGroup">
+                    <label for="ccAddon">Add-On Upgrades (Optional)</label>
+                    <select id="ccAddon" onchange="calculateTotal()">
+                        <option value="" data-price="0" data-duration="0">-- None --</option>
+                        <option value="Stone Facial Add-On" data-price="15" data-duration="15">Stone Facial Add-On (+15 mins) - £15</option>
+                        <option value="Aromatherapy Facial Add-On" data-price="20" data-duration="15">Bespoke Aromatherapy Facial Add-On (+15 mins) - £20</option>
+                        <option value="Ultimate Add-On Facial" data-price="15" data-duration="15">The Ultimate Add-On Facial (+15 mins) - £15</option>
+                        <option value="Hair Mask Add-On" data-price="30" data-duration="0">Botanical Hair Mask Add-On - £30</option>
+                    </select>
+                </div>
 
-    <!-- Main Treatment Dropdown -->
-    <div class="cc-group" id="treatmentGroup">
-      <label for="treatment">Main Treatment:</label>
-      <select id="treatment" name="treatment" required onchange="calculateTotal()">
-        <option value="" disabled selected>Select main treatment...</option>
-        <!-- Massages & Luxury -->
-        <option value="Swedish Massage|50|65">Swedish Massage (50 mins - £65)</option>
-        <option value="Stretch & Recover Massage|70|80">Stretch & Recover Massage (70 mins - £80)</option>
-        <option value="Relax & Drain Massage|50|65">Relax & Drain Massage (50 mins - £65)</option>
-        <option value="Hot Stone Experience|50|70">Hot Stone Experience (50 mins - £70)</option>
-        <option value="Fire & Ice Massage|50|70">Fire & Ice: Hot & Cold Stone (50 mins - £70)</option>
-        <option value="The Ultimate Ritual|70|85">The Ultimate Ritual (70 mins - £85)</option>
-        <option value="Sea Salt Renewal Scrub & Massage|70|80">Sea Salt Renewal Scrub & Massage (70 mins - £80)</option>
-        <option value="The Blend & Body Massage|50|75">The Blend & Body Massage (50 mins - £75)</option>
-        <option value="Personalised Holistic Massage (50 mins)|50|70">Personalised Holistic Massage (50 mins - £70)</option>
-        <option value="Personalised Holistic Massage (80 mins)|80|95">Personalised Holistic Massage (80 mins - £95)</option>
-        
-        <!-- Seated & Facials -->
-        <option value="Seated Indian Head Massage|30|40">Seated Indian Head Massage (30 mins - £40)</option>
-        <option value="On-Site Ergonomic Chair Massage|20|30">On-Site Ergonomic Chair Massage (20 mins - £30)</option>
-        <option value="Luxury Bespoke Aromatherapy Facial|25|35">Luxury Bespoke Aromatherapy Facial (25 mins - £35)</option>
-        <option value="Oat Scrub & Drain Facial|25|35">Oat Scrub & Drain Facial (25 mins - £35)</option>
-        <option value="Extended Facial and Upper Body Massage|50|60">Extended Facial & Upper Body Massage (50 mins - £60)</option>
-        
-        <!-- Focused & Feet -->
-        <option value="Abdominal Detox & Drain|30|35">Abdominal Detox & Drain (30 mins - £35)</option>
-        <option value="Botanical Hair Mask & Scalp Ritual|30|40">Botanical Hair Mask & Scalp Ritual (30 mins - £40)</option>
-        <option value="Focused Foot Massage|25|30">Focused Foot Massage (25 mins - £30)</option>
-        <option value="Heavy Legs: Foot & Leg Massage|50|60">Heavy Legs: Foot & Leg Massage (50 mins - £60)</option>
-        <option value="Holistic Reflexology (25 mins)|25|30">Holistic Reflexology (25 mins - £30)</option>
-        <option value="Holistic Reflexology (50 mins)|50|60">Holistic Reflexology (50 mins - £60)</option>
-      </select>
-    </div>
+                <div id="ccSchedulingFields">
+                    <div class="cc-group">
+                        <label for="ccDate">Preferred Date *</label>
+                        <input type="date" id="ccDate" onchange="fetchTimeSlots()">
+                    </div>
 
-    <!-- 1. Dedicated Facial Add-On Dropdown -->
-    <div class="cc-group" id="facialGroup">
-      <label for="facialAddon">Add-On Facial (Optional):</label>
-      <select id="facialAddon" name="facialAddon" onchange="calculateTotal()">
-        <option value="None|0|0" selected>None</option>
-        <option value="The Ultimate Add-On Facial|15|15">The Ultimate Add-On Facial (15 mins - £15)</option>
-        <option value="Hot/Cool Stone Facial Upgrade|15|15">Stone Facial Upgrade - Hot & Cool Stones (15 mins - £15)</option>
-        <option value="Bespoke Aromatherapy Facial Upgrade|15|20">Bespoke Aromatherapy Facial Upgrade (15 mins - £20)</option>
-      </select>
-    </div>
+                    <div class="cc-group">
+                        <label for="ccTime">Preferred Time *</label>
+                        <select id="ccTime">
+                            <option value="">-- Select Date First --</option>
+                        </select>
+                    </div>
+                </div>
 
-    <!-- 2. Treatment Add-On Dropdown (Express / ≤40 mins) -->
-    <div class="cc-group" id="addonGroup">
-      <label for="treatmentAddon">Add-On Treatment (Optional):</label>
-      <select id="treatmentAddon" name="treatmentAddon" onchange="calculateTotal()">
-        <option value="None|0|0" selected>None</option>
-        <option value="On-Site Ergonomic Chair Massage|20|30">On-Site Ergonomic Chair Massage (20 mins - £30)</option>
-        <option value="Focused Foot Massage|25|30">Focused Foot Massage (25 mins - £30)</option>
-        <option value="Holistic Reflexology|25|30">Holistic Reflexology (25 mins - £30)</option>
-        <option value="Luxury Bespoke Aromatherapy Facial|25|35">Luxury Bespoke Aromatherapy Facial (25 mins - £35)</option>
-        <option value="Oat Scrub & Drain Facial|25|35">Oat Scrub & Drain Facial (25 mins - £35)</option>
-        <option value="Abdominal Detox & Drain|30|35">Abdominal Detox & Drain (30 mins - £35)</option>
-        <option value="Botanical Hair Mask & Scalp Ritual|30|30">Botanical Hair Mask & Scalp Ritual (30 mins - £30 add-on price)</option>
-        <option value="Seated Indian Head Massage|30|40">Seated Indian Head Massage (30 mins - £40)</option>
-      </select>
-    </div>
+                <div class="cc-group">
+                    <label for="ccName">Full Name *</label>
+                    <input type="text" id="ccName" required placeholder="e.g. Jane Smith">
+                </div>
 
-    <!-- 3. Facility Use Dropdown -->
-    <div class="cc-group" id="facilityGroup">
-      <label for="facilityAddon">Facility Use (Optional for non-staying guests):</label>
-      <select id="facilityAddon" name="facilityAddon" onchange="calculateTotal()">
-        <option value="None|0|0" selected>None</option>
-        <option value="Silverwood Spa Pass (60 mins)|0|10">Silverwood Spa Pass (+£10)</option>
-      </select>
-    </div>
+                <div class="cc-group">
+                    <label for="ccEmail">Email Address *</label>
+                    <input type="email" id="ccEmail" required placeholder="e.g. jane@example.com">
+                </div>
 
-    <div class="cc-group" id="dateGroup">
-      <label>Date</label>
-      <input type="date" id="date" onchange="updateAvailableTimes()">
-    </div>
+                <div class="cc-group">
+                    <label for="ccPhone">Phone Number *</label>
+                    <input type="tel" id="ccPhone" required placeholder="e.g. 07123 456789">
+                </div>
 
-    <div class="cc-group" id="timeGroup">
-      <label>Time Slot</label>
-      <select id="time"></select>
-    </div>
+                <div class="cc-total">Total: £<span id="ccTotalAmount">0</span></div>
 
-    <div id="contactFields">
-      <div class="cc-group"><label>Your Full Name</label><input type="text" id="custName" required></div>
-      <div class="cc-group"><label>Email Address</label><input type="email" id="custEmail" required></div>
-      <div class="cc-group"><label>Phone Number</label><input type="tel" id="custPhone" required></div>
-    </div>
+                <button type="submit" class="cc-btn" id="ccSubmitBtn">Confirm & Proceed to Payment</button>
+            </form>
 
-    <!-- Single Unified Total Display -->
-    <div class="cc-total" id="displayTotal">Total: £0</div>
+            <div class="cc-popup" id="ccModal">
+                <div id="ccModalContent"></div>
+            </div>
 
-    <button type="button" class="cc-btn" id="submitBtn" onclick="submitBooking()">Submit Provisional Booking</button>
-  </div>
-</form>
-
-        <div class="cc-booking-card cc-success-box" id="successBox" style="display:none;">
-  <h3 style="color: #2e6b38;">Booking Requested!</h3>
-  <p>Your appointment has been provisionally reserved.</p>
-  <p><strong>Please complete your payment transfer to secure your slot:</strong></p>
-  <p style="background:#fff; padding:12px; border:1px solid #ccc; border-radius:4px;">
-    <strong>Account Name:</strong> Cedar and Clove<br>
-    <strong>Sort Code:</strong> 04-00-06<br>
-    <strong>Account No:</strong> 17251831<br>
-    <strong>Total:</strong> <span id="payTotal"></span>
-  </p>
-  <p style="font-size: 0.85rem; color: #606660; line-height: 1.4; margin-top: 15px;">
-    <strong>Policy Notice:</strong> To confirm your appointment, payment must be received via bank transfer within 4 hours of booking, or by 4:00 PM the day before your appointment—whichever is sooner. Free cancellation or rescheduling is available up to 24 hours prior to your treatment. Cancellations or no-shows within 24 hours remain liable for the full amount.
-  </p>
-  <p><small>You will receive a confirmation email within 24 hours once payment is verified.</small></p>
-</div>
+            <div class="cc-success-box" id="ccSuccessBox">
+                <h3>Thank You!</h3>
+                <p id="ccSuccessMsg"></p>
+            </div>
+        </div>
     </section>
-
-<script>
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxHjwcJDeXH0bqi1nd0P0tI71k0klnD-C1rVb0lTlm6Gz9peviXYFr1JP3iAzLHjz5b/exec";
-
-  // Prevent selecting past dates
-  const dateInput = document.getElementById('date');
-  const today = new Date().toISOString().split('T')[0];
-  if (dateInput) dateInput.setAttribute('min', today);
-
-  function calculateTotal() {
-    const tElem = document.getElementById('treatment');
-    const tVal = (tElem && tElem.value) ? tElem.value.split('|') : ['None', '0', '0'];
-
-    const facialElem = document.getElementById('facialAddon');
-    const fVal = (facialElem && facialElem.value) ? facialElem.value.split('|') : ['None', '0', '0'];
-
-    const treatAddonElem = document.getElementById('treatmentAddon');
-    const trVal = (treatAddonElem && treatAddonElem.value) ? treatAddonElem.value.split('|') : ['None', '0', '0'];
-
-    const facilityElem = document.getElementById('facilityAddon');
-    const facVal = (facilityElem && facilityElem.value) ? facilityElem.value.split('|') : ['None', '0', '0'];
-
-    // Calculate sum of all selected items
-    const totalPrice = 
-      (parseFloat(tVal[2]) || 0) + 
-      (parseFloat(fVal[2]) || 0) + 
-      (parseFloat(trVal[2]) || 0) + 
-      (parseFloat(facVal[2]) || 0);
-
-    const totalDuration = 
-      (parseInt(tVal[1], 10) || 0) + 
-      (parseInt(fVal[1], 10) || 0) + 
-      (parseInt(trVal[1], 10) || 0) + 
-      (parseInt(facVal[1], 10) || 0);
-
-    // Safely update all total display elements on page
-    ['displayTotal', 'totalDisplay'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.innerText = 'Total: £' + totalPrice;
-    });
-
-    return { price: totalPrice, duration: totalDuration };
-  }
-
-  function handleLocationChange() {
-    const locElem = document.getElementById('location');
-    const loc = locElem ? locElem.value : '';
-    const mobilePopup = document.getElementById('mobilePopup');
-    
-    // Form elements to show/hide
-    const fieldsToToggle = [
-      'treatmentGroup', 'facialGroup', 'addonGroup', 
-      'facilityGroup', 'dateGroup', 'timeGroup', 
-      'contactFields', 'displayTotal', 'submitBtn'
-    ];
-
-    if (loc === 'Mobile to home or to holiday location' || loc === 'Mobile Visit') {
-      if (mobilePopup) mobilePopup.style.display = 'block';
-      
-      fieldsToToggle.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.style.display = 'none';
-      });
-
-      const facilitySelect = document.getElementById('facilityAddon');
-      if (facilitySelect) facilitySelect.value = 'None|0|0';
-    } else {
-      if (mobilePopup) mobilePopup.style.display = 'none';
-      
-      fieldsToToggle.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.style.display = 'block';
-      });
-
-      if (typeof updateAvailableTimes === 'function') {
-        updateAvailableTimes();
-      }
-    }
-
-    calculateTotal();
-  }
-
-async function updateAvailableTimes() {
-    const selectedDateStr = document.getElementById('date').value;
-    if (!selectedDateStr) return;
-
-    const timeSelect = document.getElementById('time');
-    timeSelect.innerHTML = '<option value="">Checking availability...</option>';
-
-    // Parse selected date
-    const parts = selectedDateStr.split('-');
-    const year = parseInt(parts[0], 10);
-    const month = parseInt(parts[1], 10) - 1;
-    const dayNum = parseInt(parts[2], 10);
-    const selectedDate = new Date(year, month, dayNum);
-
-    if (isNaN(selectedDate.getTime())) return;
-
-    // --- 4:00 PM CUTOFF FOR NEXT-DAY BOOKINGS ---
-    const now = new Date();
-    const currentHour = now.getHours();
-
-    // Calculate tomorrow's date (at midnight for clean comparison)
-    const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-
-    const isTomorrow = (
-      selectedDate.getFullYear() === tomorrow.getFullYear() &&
-      selectedDate.getMonth() === tomorrow.getMonth() &&
-      selectedDate.getDate() === tomorrow.getDate()
-    );
-
-    // If selected date is tomorrow and it's 4:00 PM (16:00) or later today:
-    if (isTomorrow && currentHour >= 16) {
-      timeSelect.innerHTML = '';
-      let option = document.createElement('option');
-      option.value = "";
-      option.innerText = "Next-day online booking closes at 4:00 PM. Please email to enquire.";
-      timeSelect.appendChild(option);
-      return;
-    }
-    // --------------------------------------------
-
-    const dayOfWeek = selectedDate.getDay();
-    const isWeekend = (dayOfWeek === 0 || dayOfWeek === 6);
-    const maxHour = isWeekend ? 17 : 15;
-
-    const treatmentInfo = calculateTotal();
-    const duration = treatmentInfo.duration;
-
-    let busySlots = [];
-    try {
-      // Added &_ = Date.now() to disable browser caching on calendar fetches
-      const resp = await fetch(SCRIPT_URL + "?date=" + selectedDateStr + "&_=" + Date.now());
-      const data = await resp.json();
-      if (data.busySlots) {
-        busySlots = data.busySlots;
-      }
-        console.log("Fetched Busy Slots from Google Calendar:", busySlots);
-    } catch (e) {
-      console.log("Could not fetch calendar availability:", e);
-    }
-
-    const isAllDayBlocked = busySlots.some(s => s.isAllDay);
-    timeSelect.innerHTML = '';
-
-    if (isAllDayBlocked) {
-      let option = document.createElement('option');
-      option.value = "";
-      option.innerText = "Fully Booked / Unavailable";
-      timeSelect.appendChild(option);
-      return;
-    }
-
-    let startMin = 9 * 60;
-    let endMin = maxHour * 60;
-    let availableCount = 0;
-    const totalBlockMinutes = duration + 20; // Treatment length + 20-min turnaround
-
-    for (let time = startMin; time < endMin; time += 5) {
-      if (time + totalBlockMinutes <= endMin) {
-        let startHour = Math.floor(time / 60);
-        let startMinute = time % 60;
-        
-        // Exact start time in milliseconds (0s, 0ms)
-        let slotStart = new Date(year, month, dayNum, startHour, startMinute, 0, 0).getTime();
-        let slotEnd = slotStart + (totalBlockMinutes * 60000);
-
-        let hasConflict = busySlots.some(b => {
-          if (b.isAllDay) return true;
-          
-          // Ensure b.start and b.end are strictly parsed as numeric timestamps
-          let bStart = Number(b.start);
-          let bEnd = Number(b.end);
-
-          // Returns true if slot overlaps any existing event range
-          return (slotStart < bEnd && slotEnd > bStart);
-        });
-
-        if (!hasConflict) {
-          let hStr = (startHour < 10 ? '0' : '') + startHour;
-          let mStr = (startMinute < 10 ? '0' : '') + startMinute;
-          let timeStr = hStr + ':' + mStr;
-          
-          let option = document.createElement('option');
-          option.value = timeStr;
-          option.innerText = timeStr;
-          timeSelect.appendChild(option);
-          availableCount++;
-        }
-      }
-    }
-
-    if (availableCount === 0) {
-      let option = document.createElement('option');
-      option.value = "";
-      option.innerText = "Fully Booked / Unavailable";
-      timeSelect.appendChild(option);
-    }
-}
-
-  function submitBooking() {
-    const name = document.getElementById('custName').value.trim();
-    const email = document.getElementById('custEmail').value.trim();
-    const phone = document.getElementById('custPhone').value.trim();
-    const date = document.getElementById('date').value;
-    const time = document.getElementById('time').value;
-
-    if (!name || !email || !phone || !date || !time) {
-      alert('Please fill in all required fields and select a date and time slot.');
-      return;
-    }
-
-    const treatmentInfo = calculateTotal();
-    const tElem = document.getElementById('treatment');
-    const fElem = document.getElementById('facialAddon');
-    const trElem = document.getElementById('treatmentAddon');
-    const facElem = document.getElementById('facilityAddon');
-
-    const tName = tElem ? tElem.options[tElem.selectedIndex].text : '';
-    const fName = (fElem && fElem.selectedIndex > 0) ? fElem.options[fElem.selectedIndex].text : null;
-    const trName = (trElem && trElem.selectedIndex > 0) ? trElem.options[trElem.selectedIndex].text : null;
-    const facName = (facElem && facElem.selectedIndex > 0) ? facElem.options[facElem.selectedIndex].text : null;
-
-    // Build add-on summary string
-    let addonsList = [];
-    if (fName) addonsList.push(fName);
-    if (trName) addonsList.push(trName);
-    if (facName) addonsList.push(facName);
-
-    const payload = {
-      name: name,
-      email: email,
-      phone: phone,
-      location: document.getElementById('location').value,
-      treatment: tName,
-      addon: addonsList.length > 0 ? addonsList.join(' + ') : 'None',
-      date: date,
-      time: time,
-      duration: treatmentInfo.duration + 20, // Total treatment length + 20-min buffer
-      totalPrice: treatmentInfo.price
-    };
-
-    document.getElementById('payTotal').innerText = '£' + treatmentInfo.price;
-    document.getElementById('ccBookingForm').style.display = 'none';
-    document.getElementById('successBox').style.display = 'block';
-    document.getElementById('successBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-    fetch(SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    }).then(() => {
-      console.log('Booking submitted successfully');
-    }).catch(err => {
-      console.log('Submission warning:', err);
-    });
-  }
-
-  function resetBookingForm() {
-    const successBox = document.getElementById('successBox');
-    const bookingForm = document.getElementById('ccBookingForm');
-
-    if (successBox) successBox.style.display = 'none';
-    if (bookingForm) {
-      bookingForm.style.display = 'block';
-      bookingForm.reset();
-    }
-
-    if (typeof calculateTotal === 'function') calculateTotal();
-    if (typeof updateAvailableTimes === 'function') updateAvailableTimes();
-  }
-
-  calculateTotal();
-  updateAvailableTimes();
-</script>
-
-<p style="font-size: 1.1rem; font-weight: 600; margin-bottom: 50px;"> 
-    Email to book: <a href="mailto:cedarandclovewellness@gmail.com?subject=Appointment Booking Request" style="color: #a35c58; text-decoration: none; border-bottom: 2px solid #a35c58; padding-bottom: 2px;">cedarandclovewellness@gmail.com</a> 
-</p> 
-
-<div style="background: #ffffff; border: 1px solid #e5ded8; border-radius: 12px; padding: 30px; text-align: left; max-width: 650px; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.01);"> 
-    <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: #161a16; margin-bottom: 10px;">Important Client Notice</h3> 
-     
-    <p style="font-size: 0.85rem; color: #606660; line-height: 1.5; margin-bottom: 15px;"> 
-        <strong>Health & Safety:</strong> For your personal well-being, certain medical conditions or treatments may require modifications or act as a contraindication to massage therapy. Please fully disclose any health concerns, acute conditions, injuries, allergies, or pregnancies when requesting your appointment. 
-    </p> 
-     
-    <p style="font-size: 0.85rem; color: #606660; line-height: 1.5;"> 
-        <strong>Code of Conduct:</strong> All services provided by Cedar & Clove Wellness are strictly professional, therapeutic, and ethical. Any inappropriate, suggestive, or disrespectful behaviour will result in the immediate cessation of the treatment. The full session fee will remain due, and further legal action or prosecution will be pursued. 
-    </p> 
 </div> 
 
 <footer> 
-    <p>&copy; 2026 Cedar & Clove Wellness. All rights reserved.</p> 
+    <p>&copy; 2026 Cedar & Clove Wellness. All Rights Reserved.</p> 
 </footer> 
 
-<script> 
+<script>
+    // Replace with your Google Apps Script Web App URL
+    const GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+
     function openTab(evt, tabName) { 
         var i, tabcontent, tablinks; 
-         
         tabcontent = document.getElementsByClassName("tab-content"); 
         for (i = 0; i < tabcontent.length; i++) { 
+            tabcontent[i].style.display = "none"; 
             tabcontent[i].classList.remove("active"); 
         } 
-         
         tablinks = document.getElementsByClassName("tab-btn"); 
         for (i = 0; i < tablinks.length; i++) { 
             tablinks[i].classList.remove("active"); 
         } 
-         
+        document.getElementById(tabName).style.display = "block"; 
         document.getElementById(tabName).classList.add("active"); 
         evt.currentTarget.classList.add("active"); 
-
-        // Reset the booking form view whenever the Book tab is clicked
-        if (tabName === 'book' && typeof resetBookingForm === 'function') {
-            resetBookingForm();
-        }
     } 
+
+    function resetBookingForm() {
+        document.getElementById('ccBookingForm').reset();
+        calculateTotal();
+        handleLocationChange();
+        document.getElementById('ccModal').style.display = 'none';
+        document.getElementById('ccSuccessBox').style.display = 'none';
+        document.getElementById('ccBookingForm').style.display = 'block';
+    }
+
+    function handleLocationChange() {
+        const location = document.getElementById('ccLocation').value;
+        const schedulingFields = document.getElementById('ccSchedulingFields');
+        const dateInput = document.getElementById('ccDate');
+        const timeSelect = document.getElementById('ccTime');
+
+        if (location === 'Voucher') {
+            schedulingFields.style.display = 'none';
+            dateInput.removeAttribute('required');
+            timeSelect.removeAttribute('required');
+        } else {
+            schedulingFields.style.display = 'block';
+            dateInput.setAttribute('required', 'required');
+            timeSelect.setAttribute('required', 'required');
+            
+            // Set minimum date to today
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.setAttribute('min', today);
+        }
+    }
+
+    function calculateTotal() {
+        const treatmentSelect = document.getElementById('ccTreatment');
+        const addonSelect = document.getElementById('ccAddon');
+        
+        const treatmentPrice = parseFloat(treatmentSelect.options[treatmentSelect.selectedIndex]?.dataset.price || 0);
+        const addonPrice = parseFloat(addonSelect.options[addonSelect.selectedIndex]?.dataset.price || 0);
+
+        const total = treatmentPrice + addonPrice;
+        document.getElementById('ccTotalAmount').innerText = total;
+
+        // Re-check available times if date is selected as total duration may change
+        if (document.getElementById('ccDate').value && document.getElementById('ccLocation').value !== 'Voucher') {
+            fetchTimeSlots();
+        }
+    }
+
+    function fetchTimeSlots() {
+        const dateVal = document.getElementById('ccDate').value;
+        const timeSelect = document.getElementById('ccTime');
+        const locationVal = document.getElementById('ccLocation').value;
+
+        if (!dateVal || locationVal === 'Voucher') return;
+
+        timeSelect.innerHTML = '<option value="">Loading slots...</option>';
+
+        // Check Previous Day 4 PM Cutoff Rule
+        const selectedDate = new Date(dateVal + 'T00:00:00');
+        const now = new Date();
+        
+        // Calculate tomorrow's date at 00:00:00
+        const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+
+        // If selected date is today or earlier
+        if (selectedDate < new Date(now.getFullYear(), now.getMonth(), now.getDate())) {
+            timeSelect.innerHTML = '<option value="">Date is in the past</option>';
+            return;
+        }
+
+        // If booking for tomorrow and current time is past 4:00 PM (16:00) today
+        if (selectedDate.getTime() === tomorrow.getTime() && now.getHours() >= 16) {
+            timeSelect.innerHTML = '<option value="">Next-day booking closed (4pm cutoff)</option>';
+            return;
+        }
+
+        const treatmentSelect = document.getElementById('ccTreatment');
+        const addonSelect = document.getElementById('ccAddon');
+        const baseDuration = parseInt(treatmentSelect.options[treatmentSelect.selectedIndex]?.dataset.duration || 0);
+        const addonDuration = parseInt(addonSelect.options[addonSelect.selectedIndex]?.dataset.duration || 0);
+        const totalDuration = baseDuration + addonDuration;
+
+        fetch(`${GOOGLE_SCRIPT_URL}?action=getSlots&date=${dateVal}&duration=${totalDuration}`)
+            .then(res => res.json())
+            .then(data => {
+                timeSelect.innerHTML = '<option value="">-- Select Time --</option>';
+                if (data.slots && data.slots.length > 0) {
+                    data.slots.forEach(slot => {
+                        const opt = document.createElement('option');
+                        opt.value = slot;
+                        opt.textContent = slot;
+                        timeSelect.appendChild(opt);
+                    });
+                } else {
+                    timeSelect.innerHTML = '<option value="">No slots available</option>';
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                // Fallback default slots if endpoint request fails or offline
+                timeSelect.innerHTML = `
+                    <option value="">-- Select Time --</option>
+                    <option value="10:00 AM">10:00 AM</option>
+                    <option value="11:30 AM">11:30 AM</option>
+                    <option value="02:00 PM">02:00 PM</option>
+                    <option value="03:30 PM">03:30 PM</option>
+                `;
+            });
+    }
+
+    document.getElementById('ccBookingForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const location = document.getElementById('ccLocation').value;
+        const treatmentSelect = document.getElementById('ccTreatment');
+        const treatmentName = treatmentSelect.options[treatmentSelect.selectedIndex].text;
+        const addonSelect = document.getElementById('ccAddon');
+        const addonValue = addonSelect.value;
+        const addonName = addonSelect.selectedIndex > 0 ? addonSelect.options[addonSelect.selectedIndex].text : 'None';
+        
+        const baseDuration = parseInt(treatmentSelect.options[treatmentSelect.selectedIndex]?.dataset.duration || 0);
+        const addonDuration = parseInt(addonSelect.options[addonSelect.selectedIndex]?.dataset.duration || 0);
+        const totalDuration = baseDuration + addonDuration;
+
+        const date = document.getElementById('ccDate').value;
+        const time = document.getElementById('ccTime').value;
+        const name = document.getElementById('ccName').value;
+        const email = document.getElementById('ccEmail').value;
+        const phone = document.getElementById('ccPhone').value;
+        const total = document.getElementById('ccTotalAmount').innerText;
+
+        const modal = document.getElementById('ccModal');
+        const modalContent = document.getElementById('ccModalContent');
+
+        if (location === 'Voucher') {
+            modalContent.innerHTML = `
+                <h3 style="color:#4e1a17; margin-bottom:10px;">Voucher Purchase Instructions</h3>
+                <p>To finalize your voucher purchase for <strong>${treatmentName}</strong> (£${total}):</p>
+                <div style="background:#fff; padding:10px; border:1px solid #e0be68; margin:10px 0; border-radius:4px;">
+                    <strong>Bank Transfer Details:</strong><br>
+                    Account Name: Cedar & Clove Wellness<br>
+                    Sort Code: XX-XX-XX<br>
+                    Account No: XXXXXXXX<br>
+                    Reference: Voucher - ${name}
+                </div>
+                <p>Please transfer <strong>£${total}</strong>. Your gift voucher will be emailed to <strong>${email}</strong> as soon as payment is received.</p>
+                <button class="cc-btn" style="margin-top:15px;" onclick="confirmBooking()">Complete Voucher Order</button>
+            `;
+        } else {
+            modalContent.innerHTML = `
+                <h3 style="color:#4e1a17; margin-bottom:10px;">Confirm Your Booking</h3>
+                <p><strong>Treatment:</strong> ${treatmentName}</p>
+                ${addonValue ? `<p><strong>Add-On:</strong> ${addonName}</p>` : ''}
+                <p><strong>Location:</strong> ${location}</p>
+                <p><strong>Date & Time:</strong> ${date} at ${time}</p>
+                <p><strong>Total Duration:</strong> ${totalDuration} mins</p>
+                <div style="background:#fff; padding:10px; border:1px solid #e0be68; margin:10px 0; border-radius:4px;">
+                    <strong>Bank Transfer Details:</strong><br>
+                    Account Name: Cedar & Clove Wellness<br>
+                    Sort Code: XX-XX-XX<br>
+                    Account No: XXXXXXXX<br>
+                    Reference: ${name}
+                </div>
+                <p>Please transfer <strong>£${total}</strong> to secure your appointment time.</p>
+                <button class="cc-btn" style="margin-top:15px;" onclick="confirmBooking()">Confirm Appointment</button>
+            `;
+        }
+
+        modal.style.display = 'block';
+    });
+
+    function confirmBooking() {
+        const submitBtn = document.getElementById('ccSubmitBtn');
+        submitBtn.disabled = true;
+        
+        const location = document.getElementById('ccLocation').value;
+        const treatmentSelect = document.getElementById('ccTreatment');
+        const treatmentName = treatmentSelect.options[treatmentSelect.selectedIndex].value;
+        const addonSelect = document.getElementById('ccAddon');
+        const addonName = addonSelect.selectedIndex > 0 ? addonSelect.value : '';
+
+        const baseDuration = parseInt(treatmentSelect.options[treatmentSelect.selectedIndex]?.dataset.duration || 0);
+        const addonDuration = parseInt(addonSelect.options[addonSelect.selectedIndex]?.dataset.duration || 0);
+        const totalDuration = baseDuration + addonDuration;
+
+        const payload = {
+            action: location === 'Voucher' ? 'buyVoucher' : 'createBooking',
+            location: location,
+            treatment: treatmentName,
+            addon: addonName,
+            duration: totalDuration,
+            date: document.getElementById('ccDate').value,
+            time: document.getElementById('ccTime').value,
+            name: document.getElementById('ccName').value,
+            email: document.getElementById('ccEmail').value,
+            phone: document.getElementById('ccPhone').value,
+            totalPrice: document.getElementById('ccTotalAmount').innerText
+        };
+
+        fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+        .then(() => {
+            document.getElementById('ccModal').style.display = 'none';
+            document.getElementById('ccBookingForm').style.display = 'none';
+            const successBox = document.getElementById('ccSuccessBox');
+            const successMsg = document.getElementById('ccSuccessMsg');
+
+            if (location === 'Voucher') {
+                successMsg.innerHTML = `Your voucher order for <strong>${payload.treatment}</strong> (£${payload.totalPrice}) has been logged. Once your bank transfer is confirmed, your gift voucher will be emailed to <strong>${payload.email}</strong>.`;
+            } else {
+                successMsg.innerHTML = `Your booking request for <strong>${payload.treatment}</strong> on <strong>${payload.date} at ${payload.time}</strong> has been submitted. A confirmation email has been sent to <strong>${payload.email}</strong>.`;
+            }
+            
+            successBox.style.display = 'block';
+            submitBtn.disabled = false;
+        })
+        .catch(err => {
+            alert('There was an issue processing your request. Please try again or contact us directly.');
+            console.error(err);
+            submitBtn.disabled = false;
+        });
+    }
 </script>
-</body> 
+
+</body>
 </html>
