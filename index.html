@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;600&display=swap" rel="stylesheet"> 
  
 <style> 
-    .cc-booking-card {
+  .cc-booking-card {
     max-width: 580px;
     margin: 20px auto;
     padding: 30px;
@@ -24,8 +24,21 @@
     font-family: 'Cormorant Garamond', serif;
     color: #4e1a17;
     text-align: center;
-    margin-bottom: 24px;
+    margin-bottom: 8px; /* Reduced gap so subtitle sits close */
   }
+
+  /* SUBTITLE STYLE */
+  .form-subtitle {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #a35c58; /* Uses your brand accent color */
+    margin-top: 0;
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+
+  .cc-group { margin-bottom: 18px; }
+  /* ... rest of your CSS continues below ... */
   .cc-group { margin-bottom: 18px; }
   .cc-group label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 14px; }
   .cc-group select, .cc-group input {
@@ -562,8 +575,9 @@
             To book at our Silverwood Lodges Treatment Room, please use the below booking form. Please be aware, that to secure your booking, payment must be made via bank transfer within 4 hours of booking (details will follow after booking), or by 4pm the day prior to your booking, whichever is sooner. After this time, your provisional booking will be cancelled if no payment is received. Cancellation is allowed with a full refund via bank transfer (please supply your details when cancelling) up to 24 hours prior to treatment. Late cancellation or no-shows are liable for the full cost of the treatment. In some cases, rearranging the treatment may be possible, please email to discuss. For mobile services, please email cedarandclovewellness@gmail.com
         </p>
 
-    <form id="ccBookingForm" class="cc-booking-card">
+   <form id="ccBookingForm" class="cc-booking-card">
   <h2>Book Your Session</h2>
+  <p class="form-subtitle">For same-day availability, please email us directly</p>
   <div id="bookingFields">
 
     <!-- Location Dropdown -->
