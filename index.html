@@ -626,6 +626,7 @@
         <option value="" disabled selected>Select location...</option>
         <option value="Silverwood Spa Room">Silverwood Spa Room</option>
         <option value="Mobile to home or to holiday location">Mobile to home or to holiday location</option>
+        <option value="Voucher">Gift Voucher Purchase</option>
       </select>
     </div>
 
@@ -1069,6 +1070,36 @@ async function updateAvailableTimes() {
             resetBookingForm();
         }
     } 
+    // Dynamic show/hide for Gift Voucher selection
+    document.addEventListener('DOMContentLoaded', function() {
+        const locationSelect = document.getElementById('location');
+        const dateGroup = document.getElementById('dateGroup');
+        const timeGroup = document.getElementById('timeGroup');
+        const dateInput = document.getElementById('date');
+        const timeSelect = document.getElementById('time');
+
+        if (locationSelect) {
+            locationSelect.addEventListener('change', function() {
+                if (this.value === 'Voucher') {
+                    // Hide date and time sections
+                    if (dateGroup) dateGroup.style.display = 'none';
+                    if (timeGroup) timeGroup.style.display = 'none';
+                    
+                    // Remove required validation
+                    if (dateInput) dateInput.removeAttribute('required');
+                    if (timeSelect) timeSelect.removeAttribute('required');
+                } else {
+                    // Show date and time sections
+                    if (dateGroup) dateGroup.style.display = 'block';
+                    if (timeGroup) timeGroup.style.display = 'block';
+                    
+                    // Restore required validation
+                    if (dateInput) dateInput.setAttribute('required', 'true');
+                    if (timeSelect) timeSelect.setAttribute('required', 'true');
+                }
+            });
+        }
+    });
 </script>
 </body> 
 </html>
